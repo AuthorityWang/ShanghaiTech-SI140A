@@ -1,0 +1,225 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumerate}
+\usepackage{tikz}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%  
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass : \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Class
+%   - Due date
+%   - Name
+%   - Student ID
+
+\newcommand{\hmwkTitle}{Homework\ \#03}
+\newcommand{\hmwkClass}{Probability \& Statistics for EECS}
+\newcommand{\hmwkDueDate}{Mar 5, 2023}
+\newcommand{\hmwkAuthorName}{Penghao Wang}
+\newcommand{\hmwkAuthorID}{2021533138}
+
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\\  \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at 23:59}\\
+	\vspace{4in}
+}
+
+\author{
+	Name: \textbf{\hmwkAuthorName} \\
+	Student ID: \hmwkAuthorID}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\begin{homeworkProblem}[1]
+
+Consider such functional situations, differed by the number of function ways:
+\begin{enumerate}
+    \item 2 devices functions: then there are: 1->3; 2->4; The probability is $2p^2(1-p)^3$
+    \item 3 devices functions: then there are: 132/4/5; 241/3/5; 154; 253; The probability is $8p^3(1-p)^2$
+    \item 4 devices functions: then there are: 1345, 2345, 1234, 1253, 1245, the probability is $5p^4(1-p)$. 
+    \item 5 devices functions: then there is: 12345, the probability is $p^5$.
+\end{enumerate}
+Add there together, we get the probability that this system functions is $p^5+5p^4(1-p)+8p^3(1-p)^2+2p^2(1-p)^3 = 2p^5 - 5p^4 + 2p^3 + 2p^2$.
+
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[2]
+\begin{enumerate}
+    \item Intuitive explatioon:\\
+    By simply all the people, being good at Genshin Impact is independent of being good at Apex, however, by consider the people that are admitted to the club, as they are admitted when being good at Genshin Impact, then being good at Apex is dependent on being good at Genshin Impact or Apex, then now assume a admitted people who is not good at Genshin Impact, then the people must be good at Apex as the people is admitted. So with the additional condition (among the admitted players), being good at Apex is dependent on being good at Genshin Impact.
+    \item Firstly consider the inequation's left side $P(A | B \cap C)$, as $A$ and $B$ are independent and $C = A \cup B$, then we have that $B \cap C = B$, so $P(A | B \cap C) = P(A | B) = P(A)$. Then consider the right sider of the inequation, $P(A | C) = \dfrac{P(A \cap C)}{P(C)} = \dfrac{P(A)}{P(C)}$, as $0 < P(C) < 1$, then we have $P(A | C) = \dfrac{P(A)}{P(C)} > P(A)$, so we get that $P(A | B \cap C) < P(A | C)$.
+\end{enumerate}
+
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[3]
+\begin{enumerate}
+    \item To get $p_n$ recursively, we can consider the first roll (as the running total is ever exactly $n$), then there is 6 types of the first roll: (1, 2, 3, 4, 5, 6). Then we can get the $p_n = \dfrac{1}{6}p_{n-1} + \dfrac{1}{6}p_{n-2} + \dfrac{1}{6}p_{n-3} + \dfrac{1}{6}p_{n-4} + \dfrac{1}{6}p_{n-5} + \dfrac{1}{6}p_{n-6}$. Then we also need to define the base case, $p_0 = 1$ as we can when 0 time roll, we always get 0 in total, $p_k = 0 (k < 0)$, as the total is negative makes no sense. 
+    \item As we get the recursively equation of $p_n$, then $p_7 = \dfrac{1}{6}p_{6} + \dfrac{1}{6}p_{5} + \dfrac{1}{6}p_{4} + \dfrac{1}{6}p_{3} + \dfrac{1}{6}p_{2} + \dfrac{1}{6}p_{1}$. Then we need to get the value of $p_1$ to $p_6$.
+    \begin{enumerate}
+        \item $p_1 = \dfrac{1}{6}p_{0} + \dfrac{1}{6}p_{-1} + \dfrac{1}{6}p_{-2} + \dfrac{1}{6}p_{-3} + \dfrac{1}{6}p_{-4} + \dfrac{1}{6}p_{-5} = \dfrac{1}{6}$
+        \item $p_2 = \dfrac{1}{6}p_{1} + \dfrac{1}{6}p_{0} + \dfrac{1}{6}p_{-1} + \dfrac{1}{6}p_{-2} + \dfrac{1}{6}p_{-3} + \dfrac{1}{6}p_{-4} = \dfrac{1}{6} (\dfrac{1}{6} + 1)$
+        \item $p_3 = \dfrac{1}{6}p_{2} + \dfrac{1}{6}p_{1} + \dfrac{1}{6}p_{0} + \dfrac{1}{6}p_{-1} + \dfrac{1}{6}p_{-2} + \dfrac{1}{6}p_{-3} = \dfrac{1}{6} (\dfrac{1}{6} + 1) ^ 2$
+        \item $p_4 = \dfrac{1}{6}p_{3} + \dfrac{1}{6}p_{2} + \dfrac{1}{6}p_{1} + \dfrac{1}{6}p_{0} + \dfrac{1}{6}p_{-1} + \dfrac{1}{6}p_{-2} = \dfrac{1}{6} (\dfrac{1}{6} + 1) ^ 3$
+        \item $p_5 = \dfrac{1}{6}p_{4} + \dfrac{1}{6}p_{3} + \dfrac{1}{6}p_{2} + \dfrac{1}{6}p_{1} + \dfrac{1}{6}p_{0} + \dfrac{1}{6}p_{-1} = \dfrac{1}{6} (\dfrac{1}{6} + 1) ^ 4$
+        \item $p_6 = \dfrac{1}{6}p_{5} + \dfrac{1}{6}p_{4} + \dfrac{1}{6}p_{3} + \dfrac{1}{6}p_{2} + \dfrac{1}{6}p_{1} + \dfrac{1}{6}p_{0} = \dfrac{1}{6} (\dfrac{1}{6} + 1) ^ 5$
+    \end{enumerate}
+    Add them together, we will get that $p_7 = \dfrac{1}{6}(\dfrac{1}{6} + \dfrac{1}{6} (\dfrac{1}{6} + 1) + ... + \dfrac{1}{6} (\dfrac{1}{6} + 1) ^ 5) = \dfrac{1}{36} \dfrac{1-(\dfrac{7}{6}) ^ 6}{1 - \dfrac{7}{6}} = \dfrac{1}{6}((\dfrac{7}{6}) ^ 6 - 1)$
+    \item Intuitive explanation: \\
+    As there is 6 types of each roll (1, 2, 3, 4, 5, 6), then each time we add $\dfrac{1 + 2 + 3 + 4 + 5 + 6}{6} = \dfrac{21}{6} = \dfrac{7}{2}$. Then as for a $n$, every 2 rolls, we get that 7 added on the total number, then consider on the total number, as in every 7 numbers, there are 2 rolls that get the number. Then we get the probability of $p_n = 2 / 7$ when $n \rightarrow \infty$. 
+\end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[4]
+\begin{enumerate}
+    \item $p_{i, j}$ can be get when $p_{i-1, j}$ continue select a toy other than the j types of toys, the probability is $\dfrac{n - (j - 1)}{n}$, as for $p_{i-1, j}$, $p_{i, j}$ can be get by continue select one of the j types of toys, the probability is $\dfrac{j}{n}$. So the recursive equation is $p_{i, j} = \dfrac{n - j + 1}{n} p_{i - 1, j - 1} + \dfrac{j}{n}p_{i-1, j}$. 
+    \item We can calculate by firstly calculate $p_{i, 1}, p_{i-1, 1}, ..., p_{1, 1}$, as when $j = 0$, the $p_{i, j} = 0$, then $p_{i, 1} = 0 + \dfrac{j}{n}p_{i - 1, j}$, as $p_{1, 1} = 1$, then we can calculate all the $p_{i, 1}, p_{i-1, 1}, ..., p_{1, 1}$. Then we calculate $p_{i, 2}, p_{i-1, 2}, ..., p_{2, 2}$, as $p_{i, 2} = \dfrac{n-1}{n}p_{i-1, 1} + \dfrac{j}{n}p_{i-1, 2}$, then we can recursively calculate the $p_{i, 2}$. By continuing doing so, we will get the value of $p_{i, j}$. 
+\end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[5]
+\begin{enumerate}
+    \item As $p_k$ is the probability that drunk ever reaches the value k, the as for $p_k$, there are 2 situations to reach the $S_k$, that is 
+    \begin{enumerate}
+        \item From $S_{k-1}$ moves one unit to the right, then the probability is $p * p_{k-1}$
+        \item From $S_{k+1}$ moves one unit to the left, then the probability is $q * p_{k+1}$
+    \end{enumerate}
+    So, the $p_k$ can be represented as $p_k = p*p_{k-1} + q*p_{k+1}$ for $k \geq 1$, note that $p_0 = 1$.
+    \item Firstly we give such definition: as the drunk man will reaches the negative positions, then we can define events $C_j$ that $j \in R$, which means that the drunk man reaches k before ever reaching -j. Then we will get that $A_j \subseteq A_{j+1}$ as if Link manage to reach -j-1, then he need to reach -j firstly. Then, by using $C_j$, we will get that $\cup_{j = 1} ^ \infty C_j$ be Link ever reaches k. Then we can present the $p_k$ by using $\cup_{j=1} ^ {\infty} C_j$. 
+    We can firstly get the $C_j$ by using the equation. \\
+    $$\begin{aligned}
+        &p_k = p*p_{k-1} + q * p_{k+1}\\
+        &\dfrac{p_{k+1} - p_k}{p_k - p_{k-1}} = \dfrac{q}{p}\\
+        &\dfrac{p_{k+1} - p_k}{p_k - p_{k-1}} = \dfrac{q}{p}\\
+    \end{aligned}$$
+    Then we define that, $D_k = p_{k+1} - p_k$. Then we will get that: $\dfrac{D_k}{D_{i-1}} = \dfrac{q}{p}$. So we will get that $\dfrac{D_{N-1}}{D_{N-2}} = \dfrac{q}{p}$, ... , $\dfrac{D_2}{D_1} = \dfrac{q}{p}$. So $D_{N-1} = D_1 (\dfrac{q}{p}) ^ {N-2}$. Then we make sum of $\alpha$, $\alpha_1 + \alpha_2 + ... + \alpha_{N-1} = P_N - P_0 = 1$. Then we get $p_i = \alpha_0 + \alpha_1 + ... + \alpha_{i-1} = \alpha_1 \dfrac{1 - (\dfrac{q}{p}) ^ i}{1 - \dfrac{q}{p}}$. Then we need to elimnate the $\alpha_1$, as the sum of $\alpha_i$ is 1, then the $p_i = \dfrac{1 - (\dfrac{q}{p}) ^ i}{1 - (\dfrac{q}{p}) ^ N}$. Note that when p = $\dfrac{1}{2}$, we will get that: $$\lim_{\dfrac{q}{p} \rightarrow 1} \dfrac{1 - (\dfrac{q}{p})^i}{1 - (\dfrac{q}{p}) ^ N} = \dfrac{i}{N}. \text{Using L'hospital therom.}$$\\
+    Then consider the $\cup _{j = 1} ^ \infty C_j$, that is let $j \rightarrow \infty$. Consider 3 cases:
+    \begin{enumerate}
+        \item p = $\dfrac{1}{2}$, then we will get that $P(A_j) = \dfrac{j}{j + k} \rightarrow 1$ when $j \rightarrow \infty$
+        \item p $\textgreater \dfrac{1}{2}$, then we will get that $P(A_j) = \dfrac{1 - (\dfrac{q}{p}) ^ j}{1 - (\dfrac{q}{p}) ^ {j + k}} \rightarrow 1$ when $j \rightarrow \infty$
+        \item p $\textless \dfrac{1}{2}$, then we will get that $P(A_j) = \dfrac{1 - (\dfrac{q}{p}) ^ j}{1 - (\dfrac{q}{p}) ^ {j + k}} \rightarrow (\dfrac{p}{q}) ^ k$ when $j \rightarrow \infty$
+    \end{enumerate}
+\end{enumerate}
+\end{homeworkProblem}
+
+\end{document}

@@ -1,0 +1,264 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumerate}
+\usepackage{tikz}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%  
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass : \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Class
+%   - Due date
+%   - Name
+%   - Student ID
+
+\newcommand{\hmwkTitle}{Homework\ \#01}
+\newcommand{\hmwkClass}{Probability \& Statistics for EECS}
+\newcommand{\hmwkDueDate}{Feb 19, 2023}
+\newcommand{\hmwkAuthorName}{Penghao Wang}
+\newcommand{\hmwkAuthorID}{2021533138}
+
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\\  \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at 23:59}\\
+	\vspace{4in}
+}
+
+\author{
+	Name: \textbf{\hmwkAuthorName} \\
+	Student ID: \hmwkAuthorID}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\begin{homeworkProblem}[1]
+	\begin{enumerate}
+	\item	
+		Using story proof, as for the left side of the equation, 
+		$\begin{Bmatrix} n+1 \\ k \end{Bmatrix}$ is defined as the number of ways to partition {1, 2,...,n+1} th students into k groups, then consider about the n+1 th student, there are 2 situations: \\
+		\begin{enumerate}
+			\item The $n+1$ th student is parted into a single group, then as for the remaining students and the groups, there will be $\begin{Bmatrix} n \\ k-1 \end{Bmatrix}$ ways to part {1, 2,...,n} th student into k-1 groups. \\
+			\item The $n+1$ th student is parted into a non-empty group with other students, then as for the remaining $n$ students and the $k$ non-empty groups, there will be $\begin{Bmatrix} n \\ k \end{Bmatrix}$ ways to part {1, 2,...,n} th student into k non-empty groups. Then we need to part this student into one of these $k$ non-empty groups, and so there will be $k\begin{Bmatrix} n \\ k \end{Bmatrix}$ ways.\\
+		\end{enumerate}
+		Add these 2 situations together, we will have $\begin{Bmatrix} n \\ k-1 \end{Bmatrix} + k\begin{Bmatrix} n \\ k \end{Bmatrix}$, then as it is the same whether to consider about the n+1 th student independently, we will have $\begin{Bmatrix} n+1 \\ k \end{Bmatrix} = \begin{Bmatrix} n \\ k-1 \end{Bmatrix} + k\begin{Bmatrix} n \\ k \end{Bmatrix}$. \\
+	\item
+		Using story proof, as $\begin{Bmatrix} n+1 \\ k \end{Bmatrix}$ is defined as the number of ways to partition {1, 2,...,n+1} th student into k groups, then consider about the n+1 th student, firstly assign it into a group, then $n$ students and $k$ groups are left. We need to consider the number of students that are not in the same group with the $n+1$ th student, as it is required that groups are non-empty, then the maximum number is $n$, the minmium number is $k$.
+		Suppose the number of students that are not in the same group with the n + 1 th student is j, then $j\in [k, n]$, and for each j, we need to choose the j students that not in the same group with the n+1 th student, which has $\begin{pmatrix} n \\ j \end{pmatrix}$ situations. As partition the j students into k groups has the number of ways of $\begin{Bmatrix} j \\ k \end{Bmatrix}$, then for each j, there is number of ways of $\begin{pmatrix}n\\j\end{pmatrix}\begin{Bmatrix}j\\k\end{Bmatrix}$. As $j \in [k, n]$, then the total number of ways is $\sum\limits_{j=k}^{n}\begin{pmatrix}n\\j\end{pmatrix}\begin{Bmatrix}j\\k\end{Bmatrix}$.
+		So we will have that $$\sum\limits_{j=k}^{n}\begin{pmatrix}n\\j\end{pmatrix}\begin{Bmatrix}j\\k\end{Bmatrix} = \begin{Bmatrix}n+1\\k+1\end{Bmatrix}.$$
+	\end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[2]
+Firstly, we need to calculate the number of all the nonrepeatwords, this can be considered as basic counting without replacement and order matters. Suppose the word length is j, then $j \in [1, 26]$, and for each j, the number of norepeated words is 26(26-1)...(26-j+1) which is the same with $\begin{pmatrix} 26\\j \end{pmatrix} j!$, then the sum will be $\sum\limits_{j=1}^{26} \begin{pmatrix} 26\\j \end{pmatrix} j!$.\\
+Secondly, we need to calculate the number of the nonrepeatwords that uses all 26 characters, that is j=26, so is $\begin{pmatrix} 26\\26 \end{pmatrix} 26! = 26!$.\\
+Then we can calculate the probability of the nonrepeatwords that uses all 26 characters, which is $\frac{26!}{\sum\limits_{j=1}^{26} \begin{pmatrix} 26\\j \end{pmatrix} j!}$.
+$\begin{aligned}\frac{26!}{\sum\limits_{j=1}^{26} \begin{pmatrix} 26\\j \end{pmatrix} j!} 
+	&= \dfrac{26!}{\begin{pmatrix} 26\\1 \end{pmatrix}1! + \begin{pmatrix} 26 \\ 2 \end{pmatrix} 2! + ... +\begin{pmatrix} 26 \\ 26 \end{pmatrix} 26!} \\
+	&= \dfrac{26!}{\dfrac{26!}{25!} + \dfrac{26!}{24!} + ... + \dfrac{26!}{0!}} \\
+	&= \dfrac{1}{\dfrac{1}{25!} + \dfrac{1}{24!} + \dfrac{1}{23!} + \dfrac{1}{22!} + ... + \dfrac{1}{0!}} \\
+\end{aligned}$.\\
+According to the taylor expands of $e^x$ is $e^x = 1 + \dfrac{1}{1!}x + \dfrac{1}{2!}x^2 + ... $, by set $x = 1$ we will get $e = 1 + \dfrac{1}{1!} + \dfrac{1}{2!} + ... = \sum\limits_{n=0}^{\infty} \dfrac{1}{n!}$.
+As this series converges quickly, then we will have the probability that it uses all 26 letters is very close to $\dfrac{1}{e}$.
+
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[3]
+	\begin{enumerate}
+		\item As a valid curriculum consists of 4 lower level courses and 3 higher level courses, then we need to choose 4 low level courses from $\{L_1, L_2, ..., L_8\}$, and choose 3 higher level courses from $\{H_1, H_2, ..., H_10\}$.
+		Firstly 4 lower level courses takes possibilities of $\begin{pmatrix} 8 \\ 4 \end{pmatrix}$, then 3 higher level courses takes possibilities of $\begin{pmatrix} 10 \\ 3\end{pmatrix}$. 
+		By using the multiplication rule, the total possibile number of different curriculum is $\begin{pmatrix} 8 \\ 4 \end{pmatrix}\begin{pmatrix} 10 \\ 3\end{pmatrix} = 8400$.\\
+		\item We can consider 3 situations of the higher level courses: 
+			\begin{enumerate}
+				\item Take courses of $\{H_1, H_2, ... , H_5\}$, not take courses of $\{H_6, H_7, ..., H_{10}\}$.\\
+					Then we need to take $L_1$ and choose 3 courses from $\{L_2, L_3, ..., L_8\}$, the number of ways is $\begin{pmatrix}7 \\ 3\end{pmatrix}$. We also need to take 3 courses from $\{H_1, H_2, ... , H_5\}$, the number of ways is $\begin{pmatrix}5 \\ 3\end{pmatrix}$. Using the multiplication rule, the total number of ways under this situations is
+					$\begin{pmatrix}7 \\ 3\end{pmatrix}\begin{pmatrix}5 \\ 3\end{pmatrix}$.\\
+				\item Not take courses of $\{H_1, H_2, ... , H_5\}$, take courses of $\{H_6, H_7, ..., H_{10}\}$.\\
+					Then we need to take $L_2$ and $L_3$ and choose 2 courses from $\{L_1, L_4, ..., L_8\}$, the number of ways is $\begin{pmatrix}6 \\ 2\end{pmatrix}$. We also need to take 4 courses from $\{H_6, H_7, ... , H_{10}\}$, the number of ways is $\begin{pmatrix}5 \\ 4\end{pmatrix}$. Using the multiplication rule, the total number of ways under this situations is
+					$\begin{pmatrix}6 \\ 2\end{pmatrix}\begin{pmatrix}5 \\ 3\end{pmatrix}$.\\
+				\item Take courses of $\{H_1, H_2, ... , H_5\}$, take courses of $\{H_6, H_7, ..., H_{10}\}$.\\
+					Then we need to take $L_1$ and $L_2$ and $L_3$ and choose 1 courses from $\{L_4, L_5, ..., L_8\}$, the number of ways is $\begin{pmatrix}5 \\ 1\end{pmatrix}$. We also need to take 3 courses both from $\{H_1, H_2, ... , H_5\}$ and $\{H_6, H_7, ..., H_{10}\}$, we can first take 1 course in the $(H_1, H_2, ..., H_5)$ and then take 2 courses from $(H_6, H_7, ..., H_{10})$, then we swap the choice, choose 2 courses in the first, 1 course in the second. 
+					Using the multiplication rule, the total number of ways under this situations is $\begin{pmatrix} 5 \\ 1 \end{pmatrix} \begin{pmatrix} 5 \\ 1 \end{pmatrix} \begin{pmatrix} 5 \\ 2 \end{pmatrix} + \begin{pmatrix} 5 \\ 1 \end{pmatrix} \begin{pmatrix} 5 \\ 2 \end{pmatrix} \begin{pmatrix}5 \\ 1\end{pmatrix}.$\\
+			\end{enumerate}
+	\end{enumerate}
+	So, in total, the total possibile number of different curriculum is 
+	$\begin{pmatrix}7 \\ 3\end{pmatrix} \begin{pmatrix}5 \\ 3\end{pmatrix} + \begin{pmatrix}6 \\ 2\end{pmatrix} \begin{pmatrix}5 \\ 3\end{pmatrix} + \begin{pmatrix} 5 \\ 1 \end{pmatrix} \begin{pmatrix} 5 \\ 1 \end{pmatrix} \begin{pmatrix} 5 \\ 2 \end{pmatrix} + \begin{pmatrix} 5 \\ 1 \end{pmatrix} \begin{pmatrix} 5 \\ 2 \end{pmatrix} \begin{pmatrix}5 \\ 1\end{pmatrix} = 1000.$
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[4]
+	\begin{enumerate}
+		\item Consider the opposite of the event that there is at least one birthday match, which is no ones' birthday match. 
+			To satisfy this situation, we need to choose k days, then assign these days to the k people, then as for choosen k days, the probability is $k!p_1p_2...p_k$. According to the definition of $e_k(x_1, x_2, ..., x_n)$, the probability of no ones birthday match is $k!e_k(\mathbf{p})$. Then the probability of at least one birthday match is $1 - k!e_k(\mathbf{p})$
+		\item Simple case: \\
+			Consider change the days of a year, by consider there is 2 days in a year, and define the probability of birthday on the 2 days is $p_i, p_j$, then the probability of there is at least one birthday match is $p_i^2 + p_j^2$, as $p_i + p_j = 1$, then the probability equals $p_i^2 + (1-p_i)^2 = 1 - 2p_i + 2p_i^2$, using the properity of quadratic function, by setting $p_i = p_j = \dfrac{1}{2}$, we will make the probability minmium. \\
+			Extreme case: \\
+			Consider re-assign the probability of birth at some days, as for a j = k, let $p_k = 1$, then the probability of at least one birthday match must be 1. \\
+			Therefore, by consider this 2 examples, the probability of at least one birthday match will be minmium when $p_1 = p_2 = ... = p_{365} = \dfrac{1}{365}$. If makes one $p_j >\dfrac{1}{365}$, then there is bigger probability of birth at the j th day, and less probability at another day. As more probability birth at j th day, then there is also bigger probability for at least one birthday match. Therefore by minmium all the days probability to $\dfrac{1}{365}$, we will minmium the probability that at least one birthday match.
+		\item 
+		\begin{enumerate}
+			\item Verify of the fact:
+				As each term of $e_k(x_1, ..., x_n)$ is k elements of $x_1, x_2, ..., x_n$, consider such 4 cases: Firstly, the term contains both $x_1, x_2$, then the probability is $x_1x_2e_{k-2}(x_3, ..., x_n)$. Secondly, the term only contains $x_1$, the probability is $x_1e_{k-1}(x_3, ..., x_n)$. Thirdly, the term only contains $x_2$, the probability is $x_2e_{k-1}(x_3, ..., x_n)$. Fourthly, the term not contains $x_1$ and $x_2$, the probability is $e_k(x_3, ..., x_n)$. By adding these situations together, we will get the fact that $e_k(x_1, ..., x_n) = x_1x_2e_{k-2}(x_3, ..., x_n) + (x_1 + x_2)e_{k-1}(x_3, ..., x_n) + e_k(x_3, ..., x_n)$ \\
+			\item By using the arithmetic mean-geometric mean inequality, and $r_1 = r_2 = (p_1 + p_2) / 2$, we will get that $\dfrac{p_1 + p_2}{2} \geq \sqrt[]{p_1p_2}$, then $(\dfrac{p_1 + p_2}{2})^2 \geq p_1p_2$, as $r_1r_2 = (\dfrac{p_1 + p_2}{2})^2$, we will get that $r_1r_2 \geq p_1p_2$. Also, as $r_1 = r_2 = (p_1 + p_2)/2$, we will get $r_1 + r_2 = p_1 + p_2$.
+				As we get the fact that $e_k(x_1, ..., x_n) = x_1x_2e_{k-2}(x_3, ..., x_n) + (x_1 + x_2)e_{k-1}(x_3, ..., x_n) + e_k(x_3, ..., x_n)$, we will get that \\
+				$\begin{aligned} \text{\emph{P}(at leas one birthday match | \textbf{p})} &= 1 - k!e_k(p_1, ..., p_{365}) \\
+					&= 1 - k![p_1p_2e_{k-2}(p_3, ..., p_{365}) + (p_1 + p_2)e_{k-1}(p_3, ..., p_{365}) + e_{k}(p_3, ..., p_n)]\end{aligned}$
+				As we have that $r_3 = p_3, r_4 = p_4, ..., r_{365} = p_{365}$\\
+				$\begin{aligned} \text{\emph{P}(at leas one birthday match | \textbf{r})} &= 1 - k!e_k(r_1, ..., r_{365}) \\
+					&= 1 - k![r_1r_2e_{k-2}(r_3, ..., r_{365}) + (r_1 + r_2)e_{k-1}(r_3, ..., r_{365}) + e_{k}(r_3, ..., r_n)]\\
+					&\leq 1 - k![p_1p_2e_{k-2}(p_3, ..., p_{365}) + (p_1 + p_2)e_{k-1}(p_3, ..., p_{365}) + e_{k}(p_3, ..., p_n)]\\ \end{aligned}$
+				So we can get that $\text{\emph{P}(at leas one birthday match | \textbf{p})} \geq \text{\emph{P}(at leas one birthday match | \textbf{r})}$.\\
+				As for the properity of arithmetic mean-geometric mean bound, the inequality only equals when $x=y$, the same for this inequation, the inequation equals only when $p_1 = p_2$, as $r_1 = r_2$ this condition also means that $r_1 = r_2 = p_1 = p_2$, which is \textbf{p} = \textbf{r}. So this inequation is strict inequality if \textbf{p} $\neq$ \textbf{r}. 
+			\item By using the inequation, suppose that there exists a vector \textbf{p} that made the probability that at least one birthday match minmium, but \textbf{p} satisfy that exists m, n that m, n$\in [1, 365]$, and m $\neq$ n, $p_m \neq p_n$, consider them as $p_1, p_2$, we can construct a vector \textbf{r} that $r_1 = r_2 = (p_1 + p_2) / 2$, according to the inequation, $\text{\emph{P}(at leas one birthday match | \textbf{p})} \textgreater \text{\emph{P}(at leas one birthday match | \textbf{r})}$, we find that \textbf{p} don't make the probability minmium, so is contradictory. Therefore the value of \textbf{p} that minmizes the probability of at last one birthday match is given by $p_j = \dfrac{1}{365}$ for all $j$.
+		\end{enumerate}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[5]
+	\begin{enumerate}
+		\item Consider choose 2 students without replacement from many students of $\{H_1, H_2, ..., H_{n+1}\}$ which has n+1 students in total, order not matters, then the number of ways is $\begin{pmatrix}n+1 \\ 2\end{pmatrix}$.\\
+			Then consider for each student: if we choose the first student, then we have $n$ students left, and we need to choose 1 student from them, the number of ways is $\begin{pmatrix}n \\ 1\end{pmatrix}$. If we choose the second student, as the first student has been considered, then we need to choose 1 student from the left $n-1$ students, the number of ways is $\begin{pmatrix}n-1 \\ 1\end{pmatrix}$. If we choose the third student, then we have $n-2$ students left, and we need to choose 1 student from them, the number of ways is $\begin{pmatrix}n-2 \\ 1\end{pmatrix}$. The same for other students, but as for the $n+1$ th students, there is no other students to choose, so is 0. So add these together, we will get the total number of choices is $0 + \begin{pmatrix}1 \\ 1\end{pmatrix} + \begin{pmatrix}2 \\ 1\end{pmatrix} + ... + \begin{pmatrix}n \\ 1\end{pmatrix} = 1 + 2 + ... + n$. As mentioned before, the number of ways is $\begin{pmatrix}n+1 \\ 2\end{pmatrix}$, so we get $1 + 2 + ... + n = \begin{pmatrix}n+1 \\ 2\end{pmatrix}$.\\
+		\item 
+			\begin{enumerate}
+				\item Story proof: \\
+					Consider such a situation, there is a bag with n+1 objects, labeled 0, 1, 2, 3, ..., n, then as for j th student ($j\in [1, n]$), we make pair by choosing 3 objects from the bag with replacement whose labels must less than the j th object's label, then for each object, we will make pairs of four objects. So as for each object, the number of pairs is $1^3, 2^3, 3^3, ..., n^3$, the total number of pairs is $1^3 + 2^3 + 3^3+ ... + n^3$ (from label 1 to n). Then we consider it in the following situations:\\
+					\begin{enumerate}
+						\item no same object, then we need to choose 4 labels from bag, so the number of ways is $\begin{pmatrix}n+1 \\ 4\end{pmatrix}$, but except for the biggest label object, we need to consider of the other objects' order in pair, which has 6 ways of permutation. So the number of ways is $6\begin{pmatrix} n+1 \\ 4 \end{pmatrix}.$
+						\item 2 same objects, then we need to choose 3 labels from bag, then the number of ways is $\begin{pmatrix}n+1 \\ 3\end{pmatrix}$, but except for the biggest label object, we need to consider of the other objects' order in pair, which has 3 ways of permutation, also by swap whose lable is same has 2 cases, for example: $\{1, 1, 2\} and \{2, 2, 1\}$, so this total number of ways is $6\begin{pmatrix} n+1 \\ 3 \end{pmatrix}.$
+						\item 3 same objects, then we need to choose 2 labels from bag, then the number of ways is $\begin{pmatrix}n+1 \\ 2\end{pmatrix}$, there is only 1 permutation, so the number of ways is $\begin{pmatrix} n+1 \\ 2 \end{pmatrix}.$
+					\end{enumerate}
+					By adding these situations together, we will get that: $$1^3 + 2^3 + 3^3 + , ..., + n^3 = 6\begin{pmatrix}n+1 \\ 4\end{pmatrix} + 6 \begin{pmatrix}n+1 \\ 3\end{pmatrix} + \begin{pmatrix}n+1 \\ 2\end{pmatrix}.$$
+				\item Basic algebra for the equation: \\
+					as we get $1 + 2 + ... + n = \begin{pmatrix}n+1 \\ 2\end{pmatrix}$ in the first part of this problem, by making square of this equation, we will get: $(1 + 2 + ... + n)^2 = \begin{pmatrix} \dfrac{(n+1)!}{2! (n-1)!}\end{pmatrix}^2 = \dfrac{(n+1)^2n^2}{4}$. We also get that $1^3 + 2^3 + ... + n^3 = 6 \begin{pmatrix}n+1 \\ 4\end{pmatrix} + 6 \begin{pmatrix}n+1 \\ 3\end{pmatrix} + \begin{pmatrix} n+1 \\ 2 \end{pmatrix}$ in this problem, consider for the right side of the equation, we get that: \\
+					$\begin{aligned}
+						6 \begin{pmatrix}n+1 \\ 4\end{pmatrix} + 6 \begin{pmatrix}n+1 \\ 3\end{pmatrix} + \begin{pmatrix} n+1 \\ 2 \end{pmatrix} 
+						&= 6 \dfrac{(n+1)!}{4!(n-3)!} + 6 \dfrac{(n+1)!}{3!(n-2)!} + \dfrac{(n+1)!}{2!(n-1)!} \\
+						&= \dfrac{(n+1)n(n-1)(n-2)}{4} + (n+1)n(n-1) + \dfrac{(n+1)n}{2} \\
+						&= (n+1)n (\dfrac{(n-1)(n-2)}{4} + (n-1) + \dfrac{1}{2})\\
+						&= (n+1)n \dfrac{n^2 - 3n + 2 + 4n - 4 + 2}{4}\\
+						&= (n+1)n \dfrac{n^2 + n}{4}\\
+						&= \dfrac{(n+1)^2 n^2}{4}\\
+					\end{aligned}$\\
+					So we get that $1^3 + 2^3 + ... + n^3 = (1 + 2 + ... + n)^2.$
+			\end{enumerate}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\end{document}
