@@ -144,11 +144,46 @@
 
 \begin{homeworkProblem}[1]
 
+\begin{enumerate}
+    \item 
+    Denote that event A is that the strategy of always switching succeeds, and denote that $B_i, i \in {1, 2, 3}$ is the event that the car is behind door $i$. Then we have \\$$\begin{aligned}
+        P(A) &= P(A | B_1) P(B_1) + P(A | B_2) P(B_2) + P(A | B_3) P(B_3)\\
+             &= 0 * \dfrac{1}{3} + 1 * \dfrac{1}{3} + 1 * \dfrac{1}{3}\\
+             &= \dfrac{2}{3}
+    \end{aligned}$$
+    So we get the unconditional probability that the strategy of always switching succeeds. \\
+    \item 
+    Denote that event $C_j$ is that Monty opens the door $j$. Then we need to calculate $P(A | C_2)$, as we assume that we always choose the door 1 first, and event A is that strategy of always switching succeeds, then $P(A | C_2) = P(B_3 | C_2)$ as we door 2 is opened and after switch, we win. \\
+    $$\begin{aligned}
+        P(B_3 | C_2) &= \dfrac{P(C_2 | B_3)P(B_3)}{P(C_2)}\\
+             &= \dfrac{P(C_2 | B_3)P(B_3)}{P(C_2 | B_1)P(B_1) + P(C_2 | B_2)P(B_2) + P(C_2 | B_3)P(B_3)} \\
+             &= \dfrac{1 * \dfrac{1}{3}}{p * \dfrac{1}{3} + 0 * \dfrac{1}{3} + 1 * \dfrac{1}{3}} \\
+             &= \dfrac{1}{1 + p}
+    \end{aligned}$$
+    \item
+    The same as the question (b). 
+    Then we need to calculate $P(A | C_3)$, as we assume that we always choose the door 1 first, and event A is that strategy of always switching succeeds, then $P(A | C_3) = P(B_2 | C_3)$ as we door 3 is opened and after switch, we win. \\
+    $$\begin{aligned}
+        P(B_2 | C_3) &= \dfrac{P(C_3 | B_2)P(B_3)}{P(C_3)}\\
+             &= \dfrac{P(C_3 | B_2)P(B_2)}{P(C_3 | B_1)P(B_1) + P(C_3 | B_2)P(B_2) + P(C_3 | B_3)P(B_3)} \\
+             &= \dfrac{1 * \dfrac{1}{3}}{(1-p) * \dfrac{1}{3} + 1 * \dfrac{1}{3} + 0 * \dfrac{1}{3}} \\
+             &= \dfrac{1}{2 - p}
+    \end{aligned}$$
+\end{enumerate}
+
 \end{homeworkProblem}
 
 \newpage
 
 \begin{homeworkProblem}[2]
+
+\begin{enumerate}
+    \item Consider the PMF be $\dfrac{a}{n}$, where a is a constant, then we calculate the sum of PMF, which should equal 1. However, $\sum_{i = 1} ^ \infty \dfrac{a}{n} = a\sum_{i = 1} ^ \infty \dfrac{1}{n}$ is a series that do not converge, so there do not exist a constant $a$ that makes the sum of PMF is not equal to 1. So there is not a discrete distribution that makes the value of the PMF at n is proportional to $\dfrac{1}{n}$. \\
+    \item Consider the PMF be $\dfrac{b}{n ^ 2}$, where b is a constatn, then we calculate the sum of PMF, which should equal 1. \\
+        $$\sum_{i = 1} ^ n \dfrac{b}{n^2} = b\sum_{i = 1} ^ n \dfrac{1}{n^2} = b \dfrac{\pi ^ 2}{6} = \dfrac{b \pi ^ 2}{6} = 1. $$ \\
+        $$b = \dfrac{\pi ^ 2}{6}. $$\\
+        Then find the satisfied discrete distribution with PMF of $\dfrac{\pi ^ 2}{6 n ^ 2}$ such that the value of the PMF at n is proportional to $\dfrac{1}{n ^ 2}$. 
+\end{enumerate}
 
 \end{homeworkProblem}
 
@@ -156,17 +191,53 @@
 
 \begin{homeworkProblem}[3]
 
+\begin{enumerate}
+    \item X and Y have the same distribution, as X is a random day of the week, so the probability of X = any of the 7 days are equal and is $\dfrac{1}{7}$. Then as Y is the day after X, so the probability of Y = any of the 7 days are also equal and is also $\dfrac{1}{7}$. So X and Y have the same distribution. \\
+    \item To calculate the $P(X \textless Y)$, we can calculate the $P(X \geq Y)$ first, there is only case, that is X = 7, Y = 1, the cases' probability is $\dfrac{1}{7}$ as there are 7 days in total. Then the probability $P(X < Y) = 1 - \dfrac{1}{7} = \dfrac{6}{7}$. 
+\end{enumerate}
+
 \end{homeworkProblem}
 
 \newpage
 
 \begin{homeworkProblem}[4]
 
+\begin{enumerate}
+    \item Firstly we find the range of X, that is $[0, n]$ as there are n flips in total. Define that k is the number of times it lands Heads, then we calculate the PMF of X is that: \\
+        $$P(X = k) = \dfrac{1}{2} \begin{pmatrix} n \\ k \end{pmatrix} p_1 ^ k (1 - p_1) ^ {n - k} + \dfrac{1}{2} \begin{pmatrix} n \\ k \end{pmatrix} p_2 ^ k (1 - p_2) ^ {n - k}, \text{where k} \in [0, n].$$ \\
+    \item If $p_1 = p_2$, then $$P(X = k) = \begin{pmatrix} n \\ k \end{pmatrix} p_1 ^ k (1 - p_1) ^ {n - k}. $$
+        Which is the binomial distribution. \\
+    \item As the 2 coins has different probability of landing Heads, then we need to consider the case of choose coin 1 and coin 2, as each time, the coin is fixed and not choose from the 2 coins, so each flip is not independent. So the distribution of X is not binomial distribution. \\
+\end{enumerate}
+
 \end{homeworkProblem}
 
 \newpage
 
 \begin{homeworkProblem}[5]
+
+\begin{enumerate}
+    \item Consider conditioning on X, then we have that 
+    $$\begin{aligned} P(X \oplus Y = 1 | X = 0) 
+        &= P(Y = 1)P(X = 0)\\
+        &= \dfrac{1 - p}{2}.\end{aligned}$$ 
+    $$\begin{aligned} P(X \oplus Y = 1 | X = 1) 
+        &= P(Y = 0)P(X = 1)\\
+        &= \dfrac{p}{2}.\end{aligned}$$
+    Then we have that $P(X \oplus Y = 0) = \dfrac{1}{2} * p + \dfrac{1}{2} * (1 - p) = \dfrac{1}{2}$, then we have $P(X \oplus Y = 1) = \dfrac{1}{2} * p + \dfrac{1}{2} * (1 - p) = \dfrac{1}{2}$. So the distribution of $X \oplus Y$ is Bern($\dfrac{1}{2}$). \\
+    \item 
+    \begin{enumerate}
+        \item X:
+        From question (a) we can see that $X \oplus Y$ is independent with X as conditioning on X do not have connection with X. 
+        \item Y:
+        \begin{enumerate}
+            \item If p = $\dfrac{1}{2}$, then we conditioning on Y, which is the same as conditioning on X. So still independent on Y. 
+            \item If p $\neq \dfrac{1}{2}$, then we conditioning on Y, we get that $$P(X \oplus Y = 1 | Y = k) = P(X \oplus k = 1) = p(1 - k) + (1 - p)k$$ \\ where $k \in {0, 1}$, then the distribution of $X \oplus Y$ is not independent with Y. 
+        \end{enumerate}
+    \end{enumerate}
+    \item 
+    as there is 
+\end{enumerate}
 
 \end{homeworkProblem}
 
