@@ -231,8 +231,18 @@
         From question (a) we can see that $X \oplus Y$ is independent with X as conditioning on X do not have connection with X. 
         \item Y:
         \begin{enumerate}
-            \item If p = $\dfrac{1}{2}$, then we conditioning on Y, which is the same as conditioning on X. So still independent on Y. 
-            \item If p $\neq \dfrac{1}{2}$, then we conditioning on Y, we get that $$P(X \oplus Y = 1 | Y = k) = P(X \oplus k = 1) = p(1 - k) + (1 - p)k$$ \\ where $k \in {0, 1}$, then the distribution of $X \oplus Y$ is not independent with Y. 
+            \item If p = $\dfrac{1}{2}$, then we conditioning on Y, we get that with $m \in {0, 1}, n \in {0, 1}$
+                $$\begin{aligned}P(X \oplus Y = m, Y = n) &= \dfrac{1}{2}P(X \oplus n = m | m = 0) + \dfrac{1}{2}P(X \oplus n = m | m = 1)\\
+                 &= \dfrac{1}{2}P(X \oplus n = 0) + \dfrac{1}{2}P(X \oplus n = 1) \\
+                 &= \dfrac{1}{2} * \dfrac{1}{2} * \dfrac{1}{2} + \dfrac{1}{2} * \dfrac{1}{2} * \dfrac{1}{2} \\
+                 &= \dfrac{1}{4}\end{aligned}$$ 
+                $$P(X \oplus Y = m)P(Y = n) = \dfrac{1}{2} * \dfrac{1}{2} = \dfrac{1}{4}$$
+                $$P(X \oplus Y = m, Y = n) = P(X \oplus Y = m)P(Y = n)$$\\
+                then the distribution of $X \oplus Y$ is independent with Y. 
+            \item If p $\neq \dfrac{1}{2}$, then we conditioning on Y, we get that, for example: 
+                $$P(X \oplus Y = 1, Y = 1) = \dfrac{1}{2}P(X \oplus 1 = 1) = \dfrac{1}{2}P(X = 0) = \dfrac{1 - p}{2}$$ 
+                $$P(X \oplus Y = 1)P(Y = 1) = \dfrac{1}{2} * \dfrac{1}{2} = \dfrac{1}{4} \neq \dfrac{1 - p}{2}$$\\
+                then the distribution of $X \oplus Y$ is not independent with Y. 
         \end{enumerate}
     \end{enumerate}
     \item 
