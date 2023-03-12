@@ -181,8 +181,8 @@
     \item Consider the PMF be $\dfrac{a}{n}$, where a is a constant, then we calculate the sum of PMF, which should equal 1. However, $\sum_{i = 1} ^ \infty \dfrac{a}{n} = a\sum_{i = 1} ^ \infty \dfrac{1}{n}$ is a series that do not converge, so there do not exist a constant $a$ that makes the sum of PMF is not equal to 1. So there is not a discrete distribution that makes the value of the PMF at n is proportional to $\dfrac{1}{n}$. \\
     \item Consider the PMF be $\dfrac{b}{n ^ 2}$, where b is a constatn, then we calculate the sum of PMF, which should equal 1. \\
         $$\sum_{i = 1} ^ n \dfrac{b}{n^2} = b\sum_{i = 1} ^ n \dfrac{1}{n^2} = b \dfrac{\pi ^ 2}{6} = \dfrac{b \pi ^ 2}{6} = 1. $$ \\
-        $$b = \dfrac{\pi ^ 2}{6}. $$\\
-        Then find the satisfied discrete distribution with PMF of $\dfrac{\pi ^ 2}{6 n ^ 2}$ such that the value of the PMF at n is proportional to $\dfrac{1}{n ^ 2}$. 
+        $$b = \dfrac{6}{\pi ^ 2}. $$\\
+        Then find the satisfied discrete distribution with PMF of $\dfrac{6}{\pi ^ 2 n ^ 2}$ such that the value of the PMF at n is proportional to $\dfrac{1}{n ^ 2}$. 
 \end{enumerate}
 
 \end{homeworkProblem}
@@ -246,7 +246,23 @@
         \end{enumerate}
     \end{enumerate}
     \item 
-    as there is 
+    \begin{enumerate}
+        \item Proof of $Y_j \sim Bern(\dfrac{1}{2})$:\\
+            When $j = 1$, then $Y_j = X_1$, then we have $P(Y_j = 1) = P(X_1 = 1) = \dfrac{1}{2}$, so we get $Y_j \sim Bern(1/2)$, with $j = 1$\\
+            When $j = 2$, then $Y_j = X_1 \oplus X_2$, then we have $P(Y_j = 1) = P(X_1 \oplus X_2 = 1) = \dfrac{1}{4} + \dfrac{1}{4} = \dfrac{1}{2}$, so $Y_j \sim Bern(1/2)$. \\
+            Now assume that $j = k$, $Y_j \sim Bern(1/2)$, then we consider when $j' = k + 1$, then $j' = k + 1$. Then $Y_j' = Y_j \oplus X_{k+1}$. Then $P(Y_j' = 1) = P(Y_j \oplus X_{k+1} = 1) = \dfrac{1}{2}P(Y_j \oplus X_{k+1}=1 | X_{k+1} = 0) + \dfrac{1}{2}P(Y_j \oplus X_{k+1}=1 | X_{k+1} = 1) = \dfrac{1}{2}*\dfrac{1}{2} + \dfrac{1}{2}*\dfrac{1}{2} = \dfrac{1}{2}$. \\
+            The same for $P(Y_j = 0)$, so with mathematical induction we have $Y_J \sim Bern(1/2)$. \\
+        \item Pairwise independent:\\
+            Consider 2 subsets J, K of \{1, 2, ..., n\}, then we have that $J = A \oplus B, K = A \oplus C$, $J\cup K$ can parted into $J\cap K$, $J\cap K^c$, $J^c \cap K$. \\
+            Assume that $J \cap K$ is nonempty, then for $y \in {0, 1}, z \in {0, 1}$, we have that $$\begin{aligned}P(Y_j = y, Y_k = z) &= \dfrac{1}{2} P(A \oplus B = y, A \oplus C = z | A = 1) + \dfrac{1}{2} P(A \oplus B = y, A \oplus C = z | A = 0)\\
+            &= \dfrac{1}{2} P(1 \oplus B = y) P(1 \oplus C = z) + \dfrac{1}{2} P(0 \oplus B = y)P(0 \oplus C = z)\\
+            &= \dfrac{1}{8} + \dfrac{1}{8}\\
+            &= \dfrac{1}{4}\\
+            &= P(Y_J = y)P(Y_K = z)\end{aligned}$$
+            As A, B, C are independent, A, B, C, $Y_J$, $Y_K$ $\sim Bern(1/2)$, we have $Y_J$ and $Y_K$ are independent. \\
+        \item Not independent:\\
+            Give an example that set A and set B are 2 subsets of \{1, 2, ..., n\}, and satisfy that $A \cap B = \emptyset$, then $A \cup B$ is also a subset of \{1, 2, ..., n\}. Then $P(Y_A = 0, Y_B = 0, Y_{A \cup B} = 0) = 0$, while $P(Y_A = 0)P(Y_B = 0)P(Y_{A\cap B} = 0) = \dfrac{1}{2} * \dfrac{1}{2} * \dfrac{1}{2} = \dfrac{1}{8}$, so not independent. 
+    \end{enumerate}
 \end{enumerate}
 
 \end{homeworkProblem}
