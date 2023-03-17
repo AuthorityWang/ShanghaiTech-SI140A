@@ -150,16 +150,29 @@
         \item If treasure in realm 1, then we need to ask 1 questions. \\
         \item If treasure in realm 2, then we need to ask 2 questions. \\
         \item ...
-        \item If treasure in realm 9, then we need to ask 9 questions. \\
+        \item If treasure in realm 8, then we need to ask 8 questions. \\
+        \item Note that if treasure in realm 9, then we need to ask 8 questions. \\
     \end{enumerate}
     Then we denote that event $X_i$ is that treasure in realm $i$. Then we have that: \\
     $$P(X_i) = \dfrac{1}{9}.$$
     Then we denote that $Y$ is the number of questions we need to ask. Then we have that: \\
     $$P(Y = k) = P(X_k) = \dfrac{1}{9}$$
     Then we have that: 
-    $$E(X_i) = 1 * \dfrac{1}{9} + 2 * \dfrac{1}{9} + ... + 9 * \dfrac{1}{9} = 5$$
+    $$E(X_i) = 1 * \dfrac{1}{9} + 2 * \dfrac{1}{9} + ... + 8 * \dfrac{2}{9} = \dfrac{44}{9}. $$
     \item 
-    By using the bisection method, as for cases that treasure in realm $\in [1, 5]$, will have probability of $\dfrac{5}{9}$ to continue find, as for realm $\in [6, 9]$, will have probability of $\dfrac{4}{9}$, to continue find. As for the first part, then 
+    By using the bisection method, we could calculate the expected questions for each case that the treasure is in a specific realm. 
+    \begin{enumerate}
+        \item If treasure in realm 1, then we need to ask 4 questions. \\
+        \item If treasure in realm 2, then we need to ask 4 questions. \\
+        \item If treasure in realm 3, then we need to ask 3 questions. \\
+        \item If treasure in realm 4, then we need to ask 3 questions. \\
+        \item If treasure in realm 5, then we need to ask 3 questions. \\
+        \item If treasure in realm 6, then we need to ask 3 questions. \\
+        \item If treasure in realm 7, then we need to ask 3 questions. \\
+        \item If treasure in realm 8, then we need to ask 3 questions. \\
+        \item If treasure in realm 9, then we need to ask 3 questions. \\
+    \end{enumerate}
+    Then we have that: the expected questions is $\dfrac{1}{9} * 4 + ... + \dfrac{1}{9} * 3 = \dfrac{29}{9}$. 
 \end{enumerate}
 
 \end{homeworkProblem}
@@ -168,17 +181,64 @@
 
 \begin{homeworkProblem}[2]
 
+
+
 \end{homeworkProblem}
 
 \newpage
 
 \begin{homeworkProblem}[3]
 
+\begin{enumerate}
+    \item Denote the times that they are simulataneously successful is $A$. As we looking for the cases that they are simultaneously successful, where the probability that simulataneously successful is $p_1 * p_2 = p_1 p_2$, then this is the geometric distribution, we have $$A-1 \sim Geom(p_1p_2)$$ and $$A \sim Fs(p_1p_2)$$ 
+    Then we denote that $p = p_1p_2$ and that $q = 1-p$, we have : $$E(A) = \sum_{k = 0} ^ \infty kP(X = k) = \sum_{k = 0} ^ \infty kq^{k-1}p = \dfrac{p}{q}\sum_{k = 0} ^ \infty kq^k. $$
+    Firstly we denote the $RES = \sum_{k = 0} ^ n kq^k$, as $q * RES = q\sum_{k = 0} ^ n kq^{k} = \sum_{k = 0} ^ \infty kq^{k + 1}$, then make subtraction and get $RES - q*RES = -nq^{n+1} + \sum_{i = 1} ^ n q^n $, so we get that $RES = \dfrac{q(1-q^n - nq^n + nq^{n+1})}{(1 - q) ^ 2}$. 
+    Take it into $E(A)$, we have $E(A) = \dfrac{1}{p} \lim_{n \rightarrow \infty} (1-q^n - nq^n + nq^{n+1}) = \dfrac{1}{p}$. \\
+    Then we get $p = p_1p_2$ and that $q = 1-p$ into $E(A)$, we have that $$E(A) = \dfrac{1}{p_1p_2}. $$
+    \item Denote the times that at least one has a success is $B$, the event's probability is $1 - (1 - p_1)(1 - p_2) = p_1 + p_2 - p_1p_2$, then the same as this problem's question 1, we denote that $p = p_1 + p_2 - p_1p_2, q = 1 - p$, we have $$E(B) = \dfrac{1}{p} = \dfrac{1}{p_1 + p_2 - p_1p_2}. $$
+    \item Firstly we denote that $p = p_1 = p_2$, and $q = 1 - p$, then we find the probability that they simultaneously success, denote that $C_1, C_2$ are the first time they success, then we have the probability $P(C_1 = C_2) = \sum_{n = 1}^{\infty}P(C_1 = n, C_2 = n) = \sum_{n = 1}^{\infty} p^2 q^{2(n - 1)} = \dfrac{p^2}{1 - q^2} = \dfrac{p}{2 - p}$. \\
+    Then, as we have that $P(C_1 = C_2) + P(C_1 < C_2) + P(C_1 > C_2) = P(C_1 = C_2) + 2P(C_1 < C_2) = 1$, we get the $$P(C_1 < C_2) = \dfrac{1}{2}(1 - \dfrac{p}{2 - p}) = \dfrac{1 - p}{2 - p}. $$
+\end{enumerate}
+
 \end{homeworkProblem}
 
 \newpage
 
 \begin{homeworkProblem}[4]
+
+\begin{enumerate}
+    \item According to the problem, we have that $X \sim Geom(p), Y \sim Geom(q)$. We have that $P(X = k) = (1 - p) ^ k p, P(Y = k) = (1 - q) ^ k q$. Then $P(X = Y) = \sum_{k = 0}^{\infty}P(X = k, Y = k) = \sum_{k = 0}^{\infty}(1 - p)^kp (1 - q)^kq = pq \sum_{k = 0}^{\infty}((1 - p)(1 - q))^k = pq \dfrac{1}{1 - (1 - p)(1 - q)} = \dfrac{pq}{p+q - pq}. $So, we have 
+    $$P(X = Y) = \dfrac{pq}{(1 - p)(1 - q)}. $$
+    \item To solve $E[max(X, Y)]$, we firstly calculate the $P(max(X, Y) = k)$. \\
+    $$\begin{aligned} P[max(X, Y) = k] &= P(X = k, Y \leq k) + P(Y = k, X \textless k) \\
+        &= P(X = k)P(Y \leq k) + P(Y = k)P(X \textless k) \\
+        &= (1 - p)^kp \sum_{n = 0}^{k}(1 - q)^nq + (1 - q)^kq\sum_{n = 0}^{k-1}(1 - p)^np \\
+        &= (1 - p)^kp[1 - (1 - q)^{k+1}] + (1 - q)^kq[1 - (1 - p)^{k}]
+    \end{aligned}$$
+    We have that
+    $$\begin{aligned}
+        E[max(X, Y)] &= \sum_{k = 0}^{\infty} kP[max(X, Y) = k] \\
+                     &= \sum_{k = 0}^{\infty} k\{(1 - p)^kp[1 - (1 - q)^k] + (1 - q)^kq[1 - (1 - p)^{k - 1}]\} \\
+                     &= \sum_{k = 0}^{\infty} k(1 - p)
+    \end{aligned}$$
+    \item According to the question 2 of this problem, we get that 
+    $$\begin{aligned}
+        P[max(X, Y) = k] &= P(X = k, Y \geq k) + P(Y = k, X \textgreater k) \\
+                         &= P(X = k)P(Y \geq k) + P(Y = k)P(X \textgreater k) \\
+                         &= (1 - p)^kp\sum_{n = k}^{\infty}(1 - q)^nq + (1 - q)^kq\sum_{n = {k + 1}}^{\infty}(1 - p)^np \\
+                         &= (1 - p)^kp (1 - q)^k + (1 - q)^kq (1 - p)^{k + 1} \\
+                         &= [p + (1 - p)q](1 - p)^k(1 - q)^k\\
+                         &= (p + q - pq)[(1 - p)(1 - q)] ^ k
+    \end{aligned}$$
+    \item We calculate the $E[X | X \leq Y]$
+    $$\begin{aligned}
+        E[X | X \leq Y] &= \sum_{i = 0}^{\infty} i P(X = i | X \leq Y) \\
+                        &= \sum_{i = 0}^{\infty} i \dfrac{P(X = i, X \leq Y)}{P(X \leq Y)} \\
+                        &= \sum_{i = 0}^{\infty} i \dfrac{P(X = i)P(Y \geq i)}{P(X \leq Y)} \\
+                        &= \sum_{i = 0}^{\infty} i \dfrac{(1 - p)^ip\sum_{j = i}^{\infty}(1 - q)^j q}{P(X \leq Y)} \\
+                        &= \sum_{i = 0}^{\infty} i \dfrac{(1 - p)^ip\sum_{j = i}^{\infty}(1 - q)^j q}{P(X \leq Y)} \\
+    \end{aligned}$$
+\end{enumerate}
 
 \end{homeworkProblem}
 

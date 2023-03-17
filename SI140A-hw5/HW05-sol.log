@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.9.25)  14 MAR 2023 17:32
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.9.12)  17 MAR 2023 23:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -453,20 +453,87 @@ Underfull \hbox (badness 10000) in paragraph at lines 153--154
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--156
+Underfull \hbox (badness 10000) in paragraph at lines 154--155
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--158
+Underfull \hbox (badness 10000) in paragraph at lines 156--157
 
  []
 
-[2] [3] [4] [5] [6] (./HW05-sol.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--159
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 165--166
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 166--167
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--168
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 168--169
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 169--170
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 170--171
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 171--172
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 172--173
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 173--174
+
+ []
+
+[2] [3] [4]
+Underfull \hbox (badness 10000) in paragraph at lines 212--213
+
+ []
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 213.
+
+
+LaTeX Warning: Command \textless invalid in math mode on input line 214.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 226.
+
+
+LaTeX Warning: Command \textgreater invalid in math mode on input line 227.
+
+[5] [6] (./HW05-sol.aux) ) 
 Here is how much of TeX's memory you used:
  13881 strings out of 476179
  291683 string characters out of 5813072
- 574002 words of memory out of 5000000
+ 584002 words of memory out of 5000000
  34374 multiletter control sequences out of 15000+600000
  475667 words of font info for 62 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
