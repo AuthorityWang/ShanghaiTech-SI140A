@@ -233,7 +233,7 @@ $$\sum_{k = 0} ^ \infty kq^k = \dfrac{q}{(1 - q)^2}$$
                      &= \sum_{k = 0}^{\infty} k(1 - p)^kp - k(1 - p)^kp(1 - q)^{k + 1} + k(1 - q)^kq - k(1 - q)^kq(1 - p)^k \\
                      &= \dfrac{1 - p}{p} - p(1 - q)\dfrac{(1 - p)(1 - q)}{(p + q - pq)^2} + \dfrac{1 - q}{q} - q\dfrac{(1 - p)(1 - q)}{(p + q - pq)^2} \\
                      &= \dfrac{1 - p}{p} + \dfrac{1 - q}{q} - \dfrac{(1 - p)(1 - q)}{p + q - pq} \\
-                     &= -1 + \dfrac{1}{p + q - pq} + \dfrac{1}{p} + \dfrac{1}{q}. 
+                     &= -1 - \dfrac{1}{p + q - pq} + \dfrac{1}{p} + \dfrac{1}{q}. 
     \end{aligned}$$
     \item According to the question 2 of this problem, we get that 
     $$\begin{aligned}
@@ -263,9 +263,10 @@ $$\sum_{k = 0} ^ \infty kq^k = \dfrac{q}{(1 - q)^2}$$
 \begin{homeworkProblem}[5]
 
 \begin{enumerate}
-    \item Denote that $A_j$ is the rank of the $jth$ dish you try, $A$ is the sum of the ranks. We have $A = A_1 + ... + A_k + (m - k)X$, as X is the rank of the best dish that you find in the exploration phase. As we have that 
-    $$E(A_1) = \dfrac{1}{n}\sum_{i = 1}^{n}i = \dfrac{n+1}{2}$$
-    As $E(A_1) = E(A_2) = ...$, we then have $$E(A) = \dfrac{(n+1)k}{2} + (m - k)E(X)$$
+    \item Denote that $A_j$ is the rank of the $jth$ dish you try, $A$ is the sum of the ranks. We have $A = A_1 + ... + A_k + (m - k)X$, as X is the rank of the best dish that you find in the exploration phase. Suppose that $A_s$ is the dish with max rank, then we we have that for $i \neq s$
+    $$E(A_1) = \dfrac{1}{E(X) - 1}\sum_{i = 1}^{E(X)-1}i = \dfrac{E(X)}{2}$$
+    We then have $$E(A) = E(A_1) + E(A_2) + ... + E(A_k) + E(X) + (m - k)E(X) = \dfrac{E(X)(k + 1)}{2} + (m - k)E(X)$$
+    So we get $$E(A) = (m - \dfrac{k}{2} + \dfrac{1}{2})E(X)$$
     \item To find the PMF of $X$, which is $P(X = i)$, we need to choose a dish with rank i and other $k-1$ dishes with rank $\leq i$ from 1 to $j - 1$, we have $$P(X = i) = \dfrac{\begin{pmatrix} i - 1 \\ k - 1 \end{pmatrix}}{\begin{pmatrix} n \\ k \end{pmatrix}}. $$
     \item As we have get the PMF of $X$, then we get that
     $$E(X) = \sum_{i = k}^{n} i P(X = i) = \sum_{i = k}^{n} i \dfrac{\begin{pmatrix} i - 1 \\ k - 1 \end{pmatrix}}{\begin{pmatrix} n \\ k \end{pmatrix}}
@@ -273,8 +274,8 @@ $$\sum_{k = 0} ^ \infty kq^k = \dfrac{q}{(1 - q)^2}$$
              = k \dfrac{\begin{pmatrix}n+1 \\ k+1 \end{pmatrix}}{\begin{pmatrix}n \\ k \end{pmatrix}}
              = \dfrac{k(n + 1)}{k + 1}$$
     \item To make the $E[X]$ maxmimze, we have 
-            $$E[X] = \dfrac{(n+1)k}{2} + (m - k)\dfrac{k(n+1)}{k+1}$$
-        To make this maxmimize, we need to get the differential to k, then we have $$E[X]' = \dfrac{n+1}{2} + \dfrac{m(n+1) - (k^2 + 2k)(n+1)}{(k + 1)^2} = 0$$
+            $$E[X] = (m - \dfrac{k}{2} + \dfrac{1}{2})\dfrac{k(n + 1)}{k + 1}$$
+        To make this maxmimize, we need to get the differential to k, then we have $$E[X]' = -\dfrac{1}{2}\dfrac{k(n + 1)}{k + 1} + (m - \dfrac{k}{2} + \dfrac{1}{2})\dfrac{n+1}{(k+1)^2} = 0$$
         Then we get $$k = \dfrac{-2 \pm \sqrt{4 - 4(-2m - 1)}}{2} = \sqrt{2(m + 1)} \pm 1$$
         As $k \in [0, m]$, we get finally k is $$k = \sqrt{2(m + 1)} - 1.$$
 \end{enumerate}
