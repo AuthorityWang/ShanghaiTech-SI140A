@@ -181,8 +181,16 @@
 
 \begin{homeworkProblem}[2]
 
-
-
+Use the model Coupon Collector in Lecture, we firstly denote that $X_k$ is the number of days needed to see the Youthuber eating steaks with $k$ types deneness at least once. \\
+Firstly we have $E[X_1] = 1$, then $X_2 - X_1 \sim Geom(\dfrac{n-1}{n})$, then we have $X_k - X_{k - 1} \sim Geom(\dfrac{n - k}{n})$, then donote that $W_k = X_k - X_{k - 1}$\\
+Then we have 
+$$\begin{aligned}E[X_n] &= E[X_1 + X_2 - X_1 + ... + X_n - X_{n - 1}]\\ 
+                       &= E[W_1 + W_2 + ... + W_n] \\
+                       &= E[W_1] + E[W_2] + E[W_n] \\
+                       &= 1 + \dfrac{n}{n-1}+ ... + \dfrac{n}{1} \\
+                       &= n\sum_{i = 1}^{n} \dfrac{1}{i}
+\end{aligned}$$
+In this problem, k = 5, then we have $E[X_5] = 5 * (\dfrac{1}{1} + \dfrac{1}{2} + ... + \dfrac{1}{5}) = \dfrac{137}{12}.$
 \end{homeworkProblem}
 
 \newpage
@@ -206,9 +214,12 @@
 
 \begin{homeworkProblem}[4]
 
+Firstly we denote the $RES = \sum_{k = 0} ^ n kq^k$, as $q * RES = q\sum_{k = 0} ^ n kq^{k} = \sum_{k = 0} ^ \infty kq^{k + 1}$, then make subtraction and get $RES - q*RES = -nq^{n+1} + \sum_{i = 1} ^ n q^n $, so we get that $RES = \dfrac{q(1-q^n - nq^n + nq^{n+1})}{(1 - q) ^ 2}$. Then the $\lim_{n \rightarrow \infty}\sum_{k = 0} ^ n kq^k = \dfrac{q}{(1 - q)^2}$. So we get that: 
+$$\sum_{k = 0} ^ \infty kq^k = \dfrac{q}{(1 - q)^2}$$  
+
 \begin{enumerate}
     \item According to the problem, we have that $X \sim Geom(p), Y \sim Geom(q)$. We have that $P(X = k) = (1 - p) ^ k p, P(Y = k) = (1 - q) ^ k q$. Then $P(X = Y) = \sum_{k = 0}^{\infty}P(X = k, Y = k) = \sum_{k = 0}^{\infty}(1 - p)^kp (1 - q)^kq = pq \sum_{k = 0}^{\infty}((1 - p)(1 - q))^k = pq \dfrac{1}{1 - (1 - p)(1 - q)} = \dfrac{pq}{p+q - pq}. $So, we have 
-    $$P(X = Y) = \dfrac{pq}{(1 - p)(1 - q)}. $$
+    $$P(X = Y) = \dfrac{pq}{p + q - pq}. $$
     \item To solve $E[max(X, Y)]$, we firstly calculate the $P(max(X, Y) = k)$. \\
     $$\begin{aligned} P[max(X, Y) = k] &= P(X = k, Y \leq k) + P(Y = k, X \textless k) \\
         &= P(X = k)P(Y \leq k) + P(Y = k)P(X \textless k) \\
@@ -218,26 +229,31 @@
     We have that
     $$\begin{aligned}
         E[max(X, Y)] &= \sum_{k = 0}^{\infty} kP[max(X, Y) = k] \\
-                     &= \sum_{k = 0}^{\infty} k\{(1 - p)^kp[1 - (1 - q)^k] + (1 - q)^kq[1 - (1 - p)^{k - 1}]\} \\
-                     &= \sum_{k = 0}^{\infty} k(1 - p)
+                     &= \sum_{k = 0}^{\infty} k\{(1 - p)^kp[1 - (1 - q)^{k + 1}] + (1 - q)^kq[1 - (1 - p)^k]\} \\
+                     &= \sum_{k = 0}^{\infty} k(1 - p)^kp - k(1 - p)^kp(1 - q)^{k + 1} + k(1 - q)^kq - k(1 - q)^kq(1 - p)^k \\
+                     &= \dfrac{1 - p}{p} - p(1 - q)\dfrac{(1 - p)(1 - q)}{(p + q - pq)^2} + \dfrac{1 - q}{q} - q\dfrac{(1 - p)(1 - q)}{(p + q - pq)^2} \\
+                     &= \dfrac{1 - p}{p} + \dfrac{1 - q}{q} - \dfrac{(1 - p)(1 - q)}{p + q - pq} \\
+                     &= -1 + \dfrac{1}{p + q - pq} + \dfrac{1}{p} + \dfrac{1}{q}. 
     \end{aligned}$$
     \item According to the question 2 of this problem, we get that 
     $$\begin{aligned}
-        P[max(X, Y) = k] &= P(X = k, Y \geq k) + P(Y = k, X \textgreater k) \\
+        P[min(X, Y) = k] &= P(X = k, Y \geq k) + P(Y = k, X \textgreater k) \\
                          &= P(X = k)P(Y \geq k) + P(Y = k)P(X \textgreater k) \\
                          &= (1 - p)^kp\sum_{n = k}^{\infty}(1 - q)^nq + (1 - q)^kq\sum_{n = {k + 1}}^{\infty}(1 - p)^np \\
                          &= (1 - p)^kp (1 - q)^k + (1 - q)^kq (1 - p)^{k + 1} \\
                          &= [p + (1 - p)q](1 - p)^k(1 - q)^k\\
                          &= (p + q - pq)[(1 - p)(1 - q)] ^ k
     \end{aligned}$$
-    \item We calculate the $E[X | X \leq Y]$
+    \item Firstly we calculate the probability $P(X = i | X \leq Y)$, we have 
+    $$ P(X = i | X \leq Y) = \dfrac{P(X = i, Y \geq i)}{P(X \leq Y)} = \dfrac{(1 - p)^ip(1 - q)^i}{\sum_{j = 0}^{\infty}P(X = j)P(Y \geq j)} = \dfrac{(1 - p)^ip(1 - q)^i}{\sum_{j = 0}^{\infty}(1 - q)^j(1 - p)^jp}$$
+    We get that $$P(X = i | X \leq Y) = (1 - p)^n(1 - q)^n(p + q - pq)$$
     $$\begin{aligned}
-        E[X | X \leq Y] &= \sum_{i = 0}^{\infty} i P(X = i | X \leq Y) \\
-                        &= \sum_{i = 0}^{\infty} i \dfrac{P(X = i, X \leq Y)}{P(X \leq Y)} \\
-                        &= \sum_{i = 0}^{\infty} i \dfrac{P(X = i)P(Y \geq i)}{P(X \leq Y)} \\
-                        &= \sum_{i = 0}^{\infty} i \dfrac{(1 - p)^ip\sum_{j = i}^{\infty}(1 - q)^j q}{P(X \leq Y)} \\
-                        &= \sum_{i = 0}^{\infty} i \dfrac{(1 - p)^ip\sum_{j = i}^{\infty}(1 - q)^j q}{P(X \leq Y)} \\
+        E[X | X \leq Y] &= \sum_{k = 0}^{\infty} k P(X = k | X \leq Y) \\
+                        &= \sum_{k = 0}^{\infty} k (p + q - pq)(1 - p)^k(1 - q)^k \\
+                        &= (p + q - pq)\dfrac{(1 - p)(1 - q)}{(p + q - pq)^2} \\
+                        &= \dfrac{(1 - p)(1 - q)}{p + q - pq}
     \end{aligned}$$
+    So, the $E[X | X \leq Y] = \dfrac{(1 - p)(1 - q)}{p + q - pq}$
 \end{enumerate}
 
 \end{homeworkProblem}
@@ -245,6 +261,23 @@
 \newpage
 
 \begin{homeworkProblem}[5]
+
+\begin{enumerate}
+    \item Denote that $A_j$ is the rank of the $jth$ dish you try, $A$ is the sum of the ranks. We have $A = A_1 + ... + A_k + (m - k)X$, as X is the rank of the best dish that you find in the exploration phase. As we have that 
+    $$E(A_1) = \dfrac{1}{n}\sum_{i = 1}^{n}i = \dfrac{n+1}{2}$$
+    As $E(A_1) = E(A_2) = ...$, we then have $$E(A) = \dfrac{(n+1)k}{2} + (m - k)E(X)$$
+    \item To find the PMF of $X$, which is $P(X = i)$, we need to choose a dish with rank i and other $k-1$ dishes with rank $\leq i$ from 1 to $j - 1$, we have $$P(X = i) = \dfrac{\begin{pmatrix} i - 1 \\ k - 1 \end{pmatrix}}{\begin{pmatrix} n \\ k \end{pmatrix}}. $$
+    \item As we have get the PMF of $X$, then we get that
+    $$E(X) = \sum_{i = k}^{n} i P(X = i) = \sum_{i = k}^{n} i \dfrac{\begin{pmatrix} i - 1 \\ k - 1 \end{pmatrix}}{\begin{pmatrix} n \\ k \end{pmatrix}}
+             = \dfrac{k}{\begin{pmatrix}n \\ k\end{pmatrix}} \sum_{i = k}^{n} \begin{pmatrix} i \\ k \end{pmatrix}
+             = k \dfrac{\begin{pmatrix}n+1 \\ k+1 \end{pmatrix}}{\begin{pmatrix}n \\ k \end{pmatrix}}
+             = \dfrac{k(n + 1)}{k + 1}$$
+    \item To make the $E[X]$ maxmimze, we have 
+            $$E[X] = \dfrac{(n+1)k}{2} + (m - k)\dfrac{k(n+1)}{k+1}$$
+        To make this maxmimize, we need to get the differential to k, then we have $$E[X]' = \dfrac{n+1}{2} + \dfrac{m(n+1) - (k^2 + 2k)(n+1)}{(k + 1)^2} = 0$$
+        Then we get $$k = \dfrac{-2 \pm \sqrt{4 - 4(-2m - 1)}}{2} = \sqrt{2(m + 1)} \pm 1$$
+        As $k \in [0, m]$, we get finally k is $$k = \sqrt{2(m + 1)} - 1.$$
+\end{enumerate}
 
 \end{homeworkProblem}
 
