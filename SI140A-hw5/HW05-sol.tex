@@ -264,13 +264,12 @@ $$\sum_{k = 0} ^ \infty kq^k = \dfrac{q}{(1 - q)^2}$$
 
 \begin{enumerate}
     \item Denote that $A_j$ is the rank of the $jth$ dish you try, $A$ is the sum of the ranks, $X_i$ is the $ith$ dish's rank. We have $A = A_1 + ... + A_k + (m - k)X$, as X is the rank of the best dish that you find in the exploration phase.
-    $$\begin{aligned}
-        E(A_i) &= E(Y_i | X = X_1)P(X = X_1) + ... + E(Y_i | X = X_k)P(X = X_k) \\ 
-               &= \dfrac{\sum_{j = 1}^{X_1 - 1} j }{k(X_1 - 1)} + ... + \dfrac{\sum_{j = 1}^{X_k - 1} j }{k(X_k - 1)} \\
-               &= \dfrac{X_1}{2k} + \dfrac{X_2}{2k} + ... + \dfrac{X_k}{2k} \\
-               &= \dfrac{E(X)}{2}
-    \end{aligned}$$
+    Suppose that the $i' th$ dish with highest rank in the first k dished, then we have, 
+    $$A = \sum_{1 \leq i \leq k, i \neq i'} A_i + A_{i'} + (m - k)X = \sum_{1 \leq i \leq k, i \neq i'} A_i + (m - k + 1)X$$
     We then have $$E(A) = E(A_1) + E(A_2) + ... + E(A_k) + E(X) + (m - k)E(X) = \dfrac{E(X)(k + 1)}{2} + (m - k)E(X)$$
+    Then as we have $$E(A_i | 1 \leq A_i \leq X) = \dfrac{1}{X - 1}(1 + 2 + ... + X - 1) = \dfrac{X}{2}.$$
+    Then we get $$E(A_i) = E(E(A_i | 1 \leq A_i \textless X)) = \dfrac{E(X)}{2}. $$
+    Finally we make sum of each $A_i$, we get $$E(A) = \sum_{1 \leq i \leq k, i \neq i'}\dfrac{E(X)}{2} + (m - k + 1)E(X) = (m - \dfrac{k}{2} + \dfrac{1}{2})E(X)$$
     So we get $$E(A) = (m - \dfrac{k}{2} + \dfrac{1}{2})E(X)$$
     \item To find the PMF of $X$, which is $P(X = i)$, we need to choose a dish with rank i and other $k-1$ dishes with rank $\leq i$ from 1 to $j - 1$, we have $$P(X = i) = \dfrac{\begin{pmatrix} i - 1 \\ k - 1 \end{pmatrix}}{\begin{pmatrix} n \\ k \end{pmatrix}}. $$
     \item As we have get the PMF of $X$, then we get that
