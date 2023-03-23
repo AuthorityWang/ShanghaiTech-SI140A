@@ -91,11 +91,11 @@
 %   - Name
 %   - Student ID
 
-\newcommand{\hmwkTitle}{Homework\ \#01}
+\newcommand{\hmwkTitle}{Homework\ \#06}
 \newcommand{\hmwkClass}{Probability \& Statistics for EECS}
-\newcommand{\hmwkDueDate}{Feb 19, 2023}
-\newcommand{\hmwkAuthorName}{Ming Xiao}
-\newcommand{\hmwkAuthorID}{12345678}
+\newcommand{\hmwkDueDate}{Mar 26, 2023}
+\newcommand{\hmwkAuthorName}{Penghao Wang}
+\newcommand{\hmwkAuthorID}{2021533138}
 
 
 %
@@ -144,71 +144,45 @@
 
 \begin{homeworkProblem}[1]
 
-\begin{enumerate}
-    % inline
-    \item 
-    \( f(n) \)
-    
-    \item
-    $ f(n) $
-    
-    \item
-   	\begin{math}
-   		f(n)
-    \end{math}
-    
-    % Display mode
-    \item
-    \[
-    	f(n)
-    \]
-    
-    \item 
-    $$ 
-    	f(n)
-    $$
-    
-    \item
-    \begin{equation}
-        	f(n)
-    \end{equation}
-\end{enumerate}
+Firstly we denote an indicator $I_j$, which is 1 if the $j$-th type toy is selected, and 0 otherwise. Then we denote that the total number of distinct toy types is X, 
+we then have $$X = \sum_{j = 1}^{n} I_j.$$
+We then find the $E(X)$, which is $$E(X) = E(\sum_{j = 1}^{n} I_j) = \sum_{j = 1}^{n}E(I_j).$$
+We can denote that the probability of the $j$-th type toy is head is $p_j$, then we have $$E(I_j) = p_j.$$
+So we have $$E(X) = \sum_{j = 1}^{n}p_j.$$
+As $p_j = (1 - (1 - \dfrac{1}{n})^t)$, where t is the number that we totally collected toys. So we have
+$$E(X) = \sum_{j = 1}^{n} (1 - (1 - \dfrac{1}{n})^t) = n(1 - (1 - \dfrac{1}{n})^t)$$
 
 \end{homeworkProblem}
+
+\newpage
 
 \begin{homeworkProblem}[2]
 
-\begin{enumerate}
-	% alignment
-	\item
-    \[
-    	\begin{split}
-	    		n^{2} + n + 1 
-	    		\le ~& n^{2} + n^{2} + n^{2} \\
-	    		= ~& 3 n^{2} \\
-	    		\le ~& c \cdot 2 n^{3}
-	    	\end{split}
-    \]
-    
-    \item
-    \begin{equation}
-    	\begin{aligned}
-	    		n^{2} + n + 1 
-	    		\le ~& n^{2} + n^{2} + n^{2} \\
-	    		= ~& 3 n^{2} \\
-	    		\le ~& c \cdot 2 n^{3}
-		\end{aligned}
-	\end{equation}
-	
-	\item
-	\begin{align}
-	    	n^{2} + n + 1 
-	    	\le ~& n^{2} + n^{2} + n^{2} \\
-	    	= ~& 3 n^{2} \\
-	    	\le ~& c \cdot 2 n^{3}
-	\end{align}
-\end{enumerate}
+We denote an indicator $A_i$, which is 1 if the $i$-th block not equal the $(i+1)$-th block, and 0 otherwise, and $A$ is the total number of runs, then we have that $$A = \sum_{i = 1}^{n - 1}A_i + 1.$$
+So we have that $$E(A) = E(\sum_{i = 1}^{n - 1}A_i + 1) = 1 + \sum_{i = 1}^{n - 1}E(A_i).$$
+Then we denote event $B_j$ is the $j th$ block is different from $j+1th$, then $P(B_j) = p(1 - p) + (1 - p)p = 2p(1 - p). $
+So we have that $E(A) = 1 + \sum_{i = 1}^{n - 1} P(B_i) = 1 + 2(n-1)p(1 - p). $
 
 \end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[3]
+    
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[4]
+
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[5]
+
+\end{homeworkProblem}
+
+\newpage
 
 \end{document}
