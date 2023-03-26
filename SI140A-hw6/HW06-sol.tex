@@ -188,7 +188,15 @@ So we have that $E(A) = 1 + \sum_{i = 1}^{n - 1} P(B_i) = 1 + 2(n-1)p(1 - p). $
 \begin{homeworkProblem}[4]
 
 \begin{enumerate}
-    \item 
+    \item Firstly from the question, we know that 23 is the minimum integer that makes chance of birthday match larger than 50, then we need to calculate the $P(X \leq 23) = 1 - P(X \geq 24)$. 
+    As this is distribute to possion distribution, then we have that $P(X \geq k) = e^{\dfrac{-(k - 1)^2}{365 * 2}}$. So we get that $P(X \geq 24) \textless \dfrac{1}{2}. $
+    So, we can get that $P(X \leq 23) \geq \dfrac{1}{2}. $ So we get that 23 is the median of X, then as for unique, we have that with k get larger, $P(X \geq k)$ becomes smaller, then $P(X \leq k) \leq P(X \leq 22) \textless \dfrac{1}{2}$, $P(X \geq k) \geq P(X \geq 24) \textgreater \dfrac{1}{2}$, so we have that 23 is the unique mean of X. 
+    \item As $I_j$ is the indicator random variable for the event $X \geq j$, then suppose that $X = k$, then we have that as for $I_1 + I_2 + ... + I_{366} = I_1 + I_2 + ... + I_j + 0 = j = X$, so we have that $X = I_1 + I_2 + ... + I_{366}$, then we have that as for $P(X \geq j) = \dfrac{365 * ... * (365 + 2 - j)}{365^{j - 1}} = (1 - \dfrac{1}{365})(1 - \dfrac{2}{365})...(1 - \dfrac{j - 2}{365}) = p_j$. 
+    Then as we have that $E(X) = E(I_1 + ... + I_366) = E(I_1) + E(I_2) + ... + E(I_{366}) = P(X \geq 1) + ... + P(X \geq 366) = \sum_{j = 1}^{366}p_j$. So we get that $E(X) = \sum_{j = 1}^{366} p_j$
+    \item As $E(X) = \sum_{j = 1}^{366}p_j$, then as $p_j = (1 - \dfrac{1}{365})(1 - \dfrac{2}{365})...(1 - \dfrac{j-2}{365})$, then with numerically calculation, we get that $E(X) = 24.6165859$.
+    \item Firstly we use $p_j$ to implement this, we have that $Var(X) = E(X^2) - [E(X)]^2$, then firstly, $X^2 = \sum_{j = 1}^{366}I_j^2 + 2\sum_{i = 1}^{365}\sum_{j = i + 1}^{366}I_iI_j$. Then as $I_j^2 = I_j$ and that $I_iI_j = I_j$ with that $i \textless j$, then we have that $E(X^2) = \sum_{j = 1}^{366}I_j + 2\sum_{j = 2}^{366}(j - 1)I_j$. 
+    So we have that $Var(X) = E(X^2) - [E(x)]^2 = \sum_{j = 1}^{366}p_j + 2\sum_{j = 2}^{366}(j - 1)p_j - (\sum_{j = 1}^{366}p_j)^2$. Then we use numerically calculation, we get that $Var(X) = 148.6402848. $
+    So, we get that $Var(X) = \sum_{j = 1}^{366}p_j + 2\sum_{j = 2}^{366}(j - 1)p_j - (\sum_{j = 1}^{366}p_j)^2$ and that $Var(X) = 148.6402848.$
 \end{enumerate}
 
 \end{homeworkProblem}
