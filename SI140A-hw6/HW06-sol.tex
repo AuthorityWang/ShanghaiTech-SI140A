@@ -171,8 +171,14 @@ So we have that $E(A) = 1 + \sum_{i = 1}^{n - 1} P(B_i) = 1 + 2(n-1)p(1 - p). $
     
 \begin{enumerate}
     \item Fristly we need to consider let the last one be the tagged elk, then we need to make k-1 captures. We have
-        $$P(X = k) = \dfrac{\begin{pmatrix} n \\ m-1 \end{pmatrix}\begin{pmatrix} N-n \\ k \end{pmatrix}}{\begin{pmatrix} N \\ m+k-1 \end{pmatrix}} * \dfrac{n - (m - 1)}{N - (m - 1) - k}$$
-        Then the total number, we need to 
+        $$\begin{aligned} P(X = k) &= \dfrac{\begin{pmatrix} n \\ m-1 \end{pmatrix}\begin{pmatrix} N-n \\ k \end{pmatrix}}{\begin{pmatrix} N \\ m+k-1 \end{pmatrix}} * \dfrac{n - (m - 1)}{N - (m - 1) - k} \\
+                                   &= \dfrac{\begin{pmatrix} m + k - 1 \\ m - 1 \end{pmatrix}\begin{pmatrix}N - m -k \\ n - m\end{pmatrix}}{\begin{pmatrix}N \\ n\end{pmatrix}} \end{aligned}.$$
+        Then the total number of elk in the new sample, as $Y = X + m$, then we have that $$P(Y = y) = P(X = y - m) = \dfrac{\begin{pmatrix} n \\ m - 1 \end{pmatrix}\begin{pmatrix}N - n \\ y - m \end{pmatrix}}{\begin{pmatrix} N \\ y - 1 \end{pmatrix}} * \dfrac{n - m + 1}{N - y + 1}$$
+    \item Define that untaggd elk are labeled 1, 2, ..., N - n, then we define that $X_1, X_2, ..., X_m$ are the number of untaggd elk before the first tagged elk, then number between first and second tagged elk, ..., then we have that $X_1 = I_1+ ... + I_{N - n}$, $I_j$ is the indicator of untagged elk j that is captured before tagged elk. 
+        Then we have that $E(I_j) = \dfrac{1}{n+1}$, so we have $E(X_1) = \dfrac{N - n}{n + 1}$, then we have that $E(X_j) = \dfrac{N-n}{n+1}$ for all $j = 1, 2,..., m$. So we have 
+        $$E(X) = \dfrac{m(N - n)}{n + 1}$$, as $Y = X+m$, we have $$E(Y) = E(X + m) = \dfrac{m(N + 1)}{n+1}. $$
+    \item Suppose that $E[Y]$ is an integer, and sample with fixed size, we have that the number of tagged elk is distribute to hypergeometric distribution, and we deonte that tagged elk in the sample is $Z$, we have that $E[Z] = \dfrac{m(N + 1)}{n+1}*\dfrac{n}{N} = m * \dfrac{1 + \dfrac{1}{N}}{1 + \dfrac{1}{n}} < m$
+    So is less than m. 
 \end{enumerate}
 
 \end{homeworkProblem}
@@ -181,14 +187,29 @@ So we have that $E(A) = 1 + \sum_{i = 1}^{n - 1} P(B_i) = 1 + 2(n-1)p(1 - p). $
 
 \begin{homeworkProblem}[4]
 
+\begin{enumerate}
+    \item 
+\end{enumerate}
+
 \end{homeworkProblem}
 
 \newpage
 
 \begin{homeworkProblem}[5]
 
-To distribute the 14 balls into 5 boxes, we can use the 
-
+To distribute the 14 balls into 5 boxes, we firstly denote event A be all the cases to put 14 balls into 5 boxes, B be the event all the cases to put 14 balls into boxes, with striction that one can at most put balls. Event $C_i$ be that the $i-th$ box has balls more than 6. Then we have
+$$B^c = \cup_{i = 1}^5 C_i.$$
+Then we have with inclusion-exclusion, 
+$$\begin{aligned}
+    P(B^c) &= \sum_{i}P(C_i) - \sum_{i < j} P(C_i \cap C_j) + ... + (-1)^{5+1}P(C_1 \cap ... \cap C_5)
+\end{aligned}$$
+As for $P(C_i)$, we have that firstly take 7 balls into the i th box, then distribute the left 7 balls into 5 boxes, that is $P(C_i)$
+= $\begin{pmatrix} 11 \\ 4 \end{pmatrix}$. Then as for $P(C_i \cap C_j)$, we have that distribute 7 balls into a box and the left 7 balls into another box, that is only 1 cases. \\
+So we have that $$\begin{aligned}P(B^c) &= \sum_{i}P(C_i) - \sum_{i < j} P(C_i \cap C_j) + ... + (-1)^{5+1}P(C_1 \cap ... \cap C_5)\\ 
+    &= \dfrac{5 * \begin{pmatrix}11 \\ 4\end{pmatrix} - 10 * 1 + 0 - 0 + 0}{\begin{pmatrix} 18 \\ 4 \end{pmatrix}} \\
+    &= \dfrac{1640}{3060}. \end{aligned}$$
+So we have that ways of B is $A - B^c = 3060 - 1640 = 1420. $\\
+So there are totally 1420 ways to distribute 14 balls into 5 boxes, with the restriction that one box can at most put 6 balls.
 \end{homeworkProblem}
 
 \newpage
