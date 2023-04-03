@@ -1,0 +1,241 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumerate}
+\usepackage{tikz}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%  
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass : \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Class
+%   - Due date
+%   - Name
+%   - Student ID
+
+\newcommand{\hmwkTitle}{Homework\ \#07}
+\newcommand{\hmwkClass}{Probability \& Statistics for EECS}
+\newcommand{\hmwkDueDate}{Apr 2, 2023}
+\newcommand{\hmwkAuthorName}{Penghao Wang}
+\newcommand{\hmwkAuthorID}{2021533138}
+
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\\  \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at 23:59}\\
+	\vspace{4in}
+}
+
+\author{
+	Name: \textbf{\hmwkAuthorName} \\
+	Student ID: \hmwkAuthorID}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\begin{homeworkProblem}[1]
+
+\begin{enumerate} [(a)]
+    \item To determine if $F$ is a valid CDF: 
+        \begin{enumerate} [(1)]
+            \item $F$ is non-decreasing, as $x \in (0, 1)$, then $sin^{-1} (\sqrt{x})$ is increasing, so we have that $F$ is increasing. 
+            \item $F$ is bounded, as we have known that it is non-decreasing, then the minimum value of $F$ is $F(0) = \dfrac{2}{\pi} sin^{-1} (\sqrt{0}) = 0$, and the maximum value of $F$ is $F(1) = \dfrac{2}{\pi} sin^{-1}(\sqrt{1}) = 1$, so $F$ is bounded in $(0, 1)$. 
+            \item $F$ is continuous, as $\dfrac{2}{\pi}$ is constant, which is continuous, then as $sin^{-1}(\sqrt{x})$ is also continuous, we have that $F$ is continuous. 
+        \end{enumerate}
+        Above all, we get that $F$ is a valid CDF. 
+        Then we need to find the corresponding PDF $f$, that is $f = F'$. We have that
+        $$f = F' = \dfrac{2}{\pi} * \dfrac{1}{2 \sqrt{x}} * \dfrac{1}{\sqrt{1 - x}} = \dfrac{1}{\pi \sqrt{x(1 - x)}}$$
+        where $x \in (0, 1)$, and $f = 0$ for other $x$. 
+    \item In the question (a), we find that the PDF $f = \dfrac{1}{\pi \sqrt{x(1 - x)}}$, then when $x \rightarrow 0$, $f \rightarrow \infty$, and when $x \rightarrow 1$, $f \rightarrow \infty$. However, $f$ is still a valid PDF, as 
+        \begin{enumerate} [(1)]
+            \item f is nonegative, as when $x \in (0, 1)$, $f \geq 0$. 
+            \item f is continuous, as $\sqrt{x(1 - x)}$, then $f$ is continuous. 
+            \item f integrates to 1, as $$\int_{0}^{1}\dfrac{1}{\pi\sqrt{x(1 - x)}} dx = \pi * arcsin(2 * 1 - 1) - \pi * arcsin(2 * 0 - 1) = 1, $$
+        \end{enumerate}
+        Then we see that f is a valid PDF though $f(x)$ goes to $\infty$ as x approaches 0 and as $x$ approaches to 1. 
+\end{enumerate}
+
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[2]
+
+Using the theroem Universality of the Uniform, we have that let $U \sim Unif(0, 1)$ and $X = F^{-1}(U)$, then X is an r.v. with CDF F. \\
+Then by using LOTUS, we get that $$\int_{0}^{1} F^{-1}(u)du = E(F^{-1}(U)) = E(X) = \mu.$$
+So we get that the area under the curve of the quantile function from 0 to 1 is $\mu$. 
+
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[3]
+    
+We firstly find the CDF, that is $$P(X \leq x) = P(U_1 \leq x, U_2 \leq x, ..., U_n \leq x)$$
+As $U_1, U_2, ..., U_n$ are i.i.d. Unif(0, 1), we have for $x \in (0, 1)$, $$P(X \leq x) = (P(U_1 \leq x))^n = x^n$$
+for other x, $P(X \leq x) = 0$. \\
+Then the PDF is $f = nx^{n-1}$, as for $E(X)$, we have that $$E(X) = \int_{0}^{1} xf(x) dx = \int_{0}^{1} nx^n dx = \dfrac{n}{n+1} (1^{n+1} - 0^{n+1}) = \dfrac{n}{n + 1}$$
+So, in conclusion, we get that the PDF is $f = nx^{n-1}$ for $x \in (0, 1)$ and 0 for other x, $E(x) = \dfrac{n}{n + 1}$. 
+
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[4]
+
+From the question, we know that $X + Y = 1$ and that $X \leq Y$. 
+\begin{enumerate} [(a)]
+    \item As the question said, the stick is broken at uniformly random point, then we define the break point be U, then $U \sim Unif(0, 1)$. 
+        Then we have that $X = min(U, 1 - U)$, and $Y = max(U, 1 - U)$. Then as for CDF, that is $P(R \leq r) = P(\dfrac{X}{Y} \leq r) = P(X \leq Y*r) = P(X \leq \dfrac{r}{1 + r})$. Then as the CDF of X is $P(X \leq x) = 1 - P(X \textgreater x) = 1 - P(x \textless U \textless 1 - x) = 2x$. So we get that $P(R \leq r ) = \dfrac{2r}{1 + r}$ for $r \in (0, 1)$ and $P(R \leq r) = 0$ for $r \leq 0$ and 1 when $r \geq 1$. 
+        Then we have that the PDF is $f = (\dfrac{2r}{1 + r})' = \dfrac{2}{(1 + r)^2}$ for $r \in (0, 1)$ and 0 for other r. 
+    \item As for the $E(R)$, we get that $$E(R) = \int_{0}^{1} r f(r) dr = \int_{0}^{1} \dfrac{2r}{(1 + r)^2} dr = \int_{0}^{1} \dfrac{2(1 - t)}{t^2} d(1 - t) = 2(\int_{1}^{2} \dfrac{1}{t}dt - \int_{1}^{2} \dfrac{1}{t^2} dt) = 2ln2 - 1.$$
+        So, $E(R) = 2ln2 - 1$. 
+    \item As for the $E(\dfrac{1}{R})$, we get that $$E(\dfrac{1}{R}) = \int_{0}^{1} \dfrac{1}{r} f(r) dr = \int_{0}^{1} \dfrac{2}{r(1 + r)^2} dr.$$
+        However, $\dfrac{2}{r(1 + r)^2}$ do not converges, so $E(\dfrac{1}{R})$ do not exists. 
+\end{enumerate}
+
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[5]
+    
+\begin{enumerate}[(a)]
+    \item According to the problem, we have that the j th trail happens at the time $(j-1)\Delta t$, then we have that there are totally $G + 1$ trails, so the $T = (G + 1 - 1) \Delta t = G \Delta t$
+    \item Firstly, we try to find the $P(T \textgreater t)$, that is $P(T \textgreater t) = P(G \textgreater \dfrac{t}{\Delta t})$, then as we have that $G \textgreater n$ only when the first n+1 trails all fail, so we have $P(G \textgreater n) = (1 - \lambda\Delta t)^{n+1}$, then as for noninteger x, we have that $P(G > x) = (1 - \lambda\Delta t)^{\lfloor x \rfloor + 1}$, so we get that $P(T \textgreater t) = (1 - \lambda\Delta t)^{\lfloor \dfrac{t}{\Delta t} \rfloor + 1}$. Then the CDF is $$P(T \leq t) = 1 - P(T \geq t) = 1 - (1 - \lambda \Delta t)^{\lfloor \dfrac{t}{\Delta t} \rfloor + 1}, (t \geq 0)$$
+        When $t \textless 0$, we have $P(T \leq t) = 0$
+    \item 
+        \begin{enumerate}[(1)]
+            \item When $t = 0$, we have that $P(T \leq 0) = P(T = 0) = \lambda \Delta t$, as $\Delta t \rightarrow 0$, we have that $P(T \leq 0) \rightarrow 0$. 
+            \item When $t > 0$, we let $\Delta = \dfrac{1}{n}$, and let $n \rightarrow \infty$, as we have that $nt - 1 \textless \lfloor nt \rfloor \textless nt$, we have that 
+                $$\lim_{n\rightarrow \infty}P(T \leq t) = 1 - \lim_{n \rightarrow \infty}(1 - \dfrac{\lambda}{n})^{nt + 1} = 1 - e^{-\lambda t}. $$ 
+        \end{enumerate}
+        So as $\Delta t \rightarrow 0$, the CDF of $T$ converges to the $Expo(\lambda)$ CDF, evaluating all the CDFs at a fixed $t \geq 0$. 
+\end{enumerate}
+
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[6]
+
+Use the theroem LOTUS, we get that $E(max(Z - c, 0)) = \int_{-\infty}^{\infty}max(z - c, 0) \phi(z) dz$.
+Then we have that $$\begin{aligned}E(max(Z - c, 0)) &= \int_{c}^{\infty}(z - c) \varphi(z)dz\\
+                                                    &= \int_{c}^{\infty}z \varphi(z)dz - \int_{c}^{\infty}c \varphi(z)dz \\
+                                                    &= \dfrac{-1}{\sqrt{2\pi}} (e^{-\dfrac{\infty^2}{2}} - e^{-\dfrac{c^2}{2}}) - c \int_{c}^{\infty}e^{-\dfrac{z^2}{2}}dz\\
+                                                    &= \dfrac{1}{\sqrt{2\pi}}e^{\dfrac{-c^2}{2}} - c(1 - \Phi(c))\\
+\end{aligned}$$
+So we get that $E(max(Z - c, 0)) = \dfrac{1}{\sqrt{2\pi}}e^{\dfrac{-c^2}{2}} - c(1 - \Phi(c))$. 
+
+\end{homeworkProblem}
+
+\end{document}
