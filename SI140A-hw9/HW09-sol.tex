@@ -144,20 +144,22 @@
 
 \begin{homeworkProblem}[1]
 
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[2]
+
 \begin{enumerate}
     \item As for the joint PMF of X, Y, N, we have that the PMF is $P(X = x, Y = y, N = n)$, then as we have that $N = X + Y$, then only when $x + y = n$, will the PMF be non-zero. So we have that
         $$P(X = x, Y = y, N = n) = P(X = x, Y = y) = (1 - p)^x * p * (1 - p)^y * p = (1 - p)^{x + y}p^2$$, as we have that $x + y = n$, so we get that $$P(X = x, Y = y, N = n) = (1 - p)^np^2$$
     \item As for the joint PMF os X, N, we have that the PMF is $P(X = x, N = n)$, as only when $n = x + y$ will the PMF be non-zero, so we have that
         $$P(X = x, N = n) = P(X = x, Y = n - x) = (1 - p)^xp(1 - p)^{n - x}p = (1 - p)^np^2$$
     \item As for the conditional PMF of $X$ given $N = n$, we have that the PMF is $$P(X = x | N = n) = \dfrac{P(X = x, N = n)}{P(N = n)}. $$
-        The numerator is the joint PMF of $X$ and $N$, which is $P(X = x, N = n) = (1 - p)^np^2$, and the denominator is the marginal PMF of $N$, which is $P(N = n) = (1 - p)^np^2 + (1 - p)^np^2 = 2(1 - p)^np^2$, so we have that $$P(X = x | N = n) = \dfrac{P(X = x, N = n)}{P(N = n)} = \dfrac{(1 - p)^np^2}{2(1 - p)^np^2} = \dfrac{1}{2}$$
+        The numerator is the joint PMF of $X$ and $N$, which is $P(X = x, N = n) = (1 - p)^np^2$, and the denominator is PMF of $N$, which is $P(N = n) = \sum_{x = 0}^{n}(1 - p)^np^2 = (n + 1)(1 - p)^np^2$, so we have that $$P(X = x | N = n) = \dfrac{P(X = x, N = n)}{P(N = n)} = \dfrac{(1 - p)^np^2}{(n + 1)(1 - p)^np^2} = \dfrac{1}{n + 1}. $$
+        where x = 0, 1, 2, ..., n. \\
+        Description: The conditional PMF of $X$ given $N = n$ is a uniform distribution, which is $P(X = x | N = n) = \dfrac{1}{n + 1}$. The event $P(X = x)$ is a Geom distribution, while the event $N = n$ is actuallu a negative binomial distribution, which denote the fail times before the second success. So the conditional PMF of $X$ given $N = n$ is $\dfrac{1}{n+1}$, which denote that the first success between the first and the second success is uniformly distributed.
 \end{enumerate}
-
-\end{homeworkProblem}
-
-\newpage
-
-\begin{homeworkProblem}[2]
 
 \end{homeworkProblem}
 
