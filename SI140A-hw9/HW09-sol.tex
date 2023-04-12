@@ -150,7 +150,7 @@
 
 \begin{homeworkProblem}[2]
 
-\begin{enumerate}
+\begin{enumerate}[(a)]
     \item As for the joint PMF of X, Y, N, we have that the PMF is $P(X = x, Y = y, N = n)$, then as we have that $N = X + Y$, then only when $x + y = n$, will the PMF be non-zero. So we have that
         $$P(X = x, Y = y, N = n) = P(X = x, Y = y) = (1 - p)^x * p * (1 - p)^y * p = (1 - p)^{x + y}p^2$$, as we have that $x + y = n$, so we get that $$P(X = x, Y = y, N = n) = (1 - p)^np^2$$
     \item As for the joint PMF os X, N, we have that the PMF is $P(X = x, N = n)$, as only when $n = x + y$ will the PMF be non-zero, so we have that
@@ -167,12 +167,31 @@
 
 \begin{homeworkProblem}[3]
     
+\begin{enumerate}[(a)]
+    \item To verify that the conditional distribution of X given X > c is the same as the distribution of c + X, firstly we can find the corresponding CDF of X given X > c, which is $F_X(x | X > c) = \dfrac{P(c < X \leq x)}{P(X > c)} = \dfrac{F_X(x) - F_X(c)}{1 - F_X(c)}$. Then we can find the corresponding CDF of X given X > c, which is $F_X(x | X > c) = \dfrac{F_X(x) - F_X(c)}{1 - F_X(c)}$, as $X \sim Expo(\lambda)$, so we have $F_X(x) = 1 - e^{-\lambda x}$. So, the $F_X(x | X > c) = \dfrac{e^{-\lambda c} - e^{-\lambda x}}{e^{-\lambda c}} = 1 - e^{-\lambda(x - c)}. $\\
+        As for the CDF of c + X, we have that $F_{c + X}(x) = F_X(x - c) = 1 - e^{-\lambda(x - c)}$. So we have that $F_{c + X}(x) = F_X(x | X > c)$. So that the conditional CDF of X given X > c is the same as the distribution of c + X. \\
+    \item As for the CDF of X given X < c, we have that for x < c, $P(X \leq x | X < c) = \dfrac{P(X \leq x, X < c)}{P(X < c)} = \dfrac{P(X \leq x)}{P(X < c)} = \dfrac{1 - e^{-\lambda x}}{1 - e^{-\lambda c}}$
+        As for the PDF, we have that $f_X(x | X < c) = (P(X \leq x | X < c))' = (\dfrac{P(X \leq x)}{P(X < c)})' = (\dfrac{1 - e^{-\lambda x}}{1 - e^{-\lambda c}})' = \dfrac{\lambda e^{-\lambda x}}{1 - e^{-\lambda c}}$ for x < c, as for $x \geq c$, PDF is zero. \\
+\end{enumerate}
+
 \end{homeworkProblem}
 
 \newpage
 
 \begin{homeworkProblem}[4]
     
+As we have that $U_1, U_2, U_3$ be i.i.d. Unif(0, 1), and let $L = min(U_1, U_2, U_3)$, $M = max(U_1, U_2, U_3)$
+\begin{enumerate}[(a)]
+    \item 
+        \begin{enumerate}[1.]
+            \item As for the marginal CDF of M is $F_M(m) = P(M \leq m) = P(U_1 \leq m, U_2 \leq m, U_3 \leq m) = P(U_1 \leq m)P(U_2 \leq m)P(U_3 \leq m) = m^3$. \\
+            \item As for the marginal PDF of M, we have that $f_M(m) = (F_M(m))' = (m^3)' = 3m^2$. \\
+            \item As for the joint CDF of M and L, firstly we consider the event $L \geq l, M \leq m$, which is easy to calculate, that is $P(L \geq l, M \leq m) = (m-l)^3$we have that $F_{M, L}(m, l) = P(M \leq m, L \leq l) = $. \\
+            \item As for the joint PDF of M and L, we have that $f_{M, L}(m, l) = (F_{M, L}(m, l))'$. \\
+        \end{enumerate}
+    \item As for the conditional PDF of M given L, we firstly find the CDF, that is 
+\end{enumerate}
+
 \end{homeworkProblem}
 
 \newpage

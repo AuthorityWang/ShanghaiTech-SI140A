@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.9.25)  12 APR 2023 13:17
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.9.12)  12 APR 2023 21:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -432,14 +432,44 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 141.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-] [2] [3] [4] [5] [6] (./HW09-sol.aux) ) 
+] [2] [3]
+Underfull \hbox (badness 10000) in paragraph at lines 171--173
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 173--175
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 187--188
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 188--189
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 189--190
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
+
+ []
+
+[5] [6] (./HW09-sol.aux) ) 
 Here is how much of TeX's memory you used:
  13881 strings out of 476179
  291683 string characters out of 5813072
- 578002 words of memory out of 5000000
+ 577002 words of memory out of 5000000
  34374 multiletter control sequences out of 15000+600000
  475667 words of font info for 62 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 100i,11n,104p,485b,258s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 100i,11n,104p,607b,258s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on HW09-sol.pdf (6 pages).
