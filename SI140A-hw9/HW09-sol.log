@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.9.25)  15 APR 2023 17:45
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.9.25)  16 APR 2023 18:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -433,48 +433,58 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 ] [2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 171--173
+Underfull \hbox (badness 10000) in paragraph at lines 199--201
 
  []
 
 
-Overfull \hbox (2.71872pt too wide) in paragraph at lines 173--175
+Overfull \hbox (2.71872pt too wide) in paragraph at lines 201--203
 [] \OT1/cmr/m/n/10 = []$ \TU/lmr/m/n/10 As for the PDF, we have that $\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 X < c\OT1/cmr/m/n/10 ) = (\OML/cmm/m/it/10 P\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X \OMS/cmsy/m/n/10 ^^T \OML/cmm/m/it/10 x\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 X < c\OT1/cmr/m/n/10 ))[] = ([])[] =
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 173--175
+Underfull \hbox (badness 10000) in paragraph at lines 201--203
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 187--188
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 188--189
+Underfull \hbox (badness 10000) in paragraph at lines 216--217
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--190
+Underfull \hbox (badness 10000) in paragraph at lines 217--218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 190--191
+Underfull \hbox (badness 10000) in paragraph at lines 218--219
 
  []
 
-[5] [6] (./HW09-sol.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 220--221
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 237--239
+
+ []
+
+[6] [7] (./HW09-sol.aux) ) 
 Here is how much of TeX's memory you used:
  13881 strings out of 476179
  291683 string characters out of 5813072
- 577002 words of memory out of 5000000
+ 584002 words of memory out of 5000000
  34374 multiletter control sequences out of 15000+600000
  475667 words of font info for 62 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 100i,11n,104p,487b,258s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 100i,12n,104p,487b,329s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on HW09-sol.pdf (6 pages).
+Output written on HW09-sol.pdf (7 pages).

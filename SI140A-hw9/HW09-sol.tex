@@ -144,6 +144,34 @@
 
 \begin{homeworkProblem}[1]
 
+\begin{enumerate}[(a)]
+    \item As for the case X, Y are discrete, we have that use the definition of conditioning probability
+        $$P(Y = y | X = x) = \dfrac{P(X = x, Y = Y)}{P(X = x)}$$
+        $$P(X = x | Y = y) = \dfrac{P(X = x, Y = Y)}{P(Y = y)}$$
+        So that we have that $$P(Y = y | X = x) = \dfrac{P(X = x, Y = Y)}{P(X = x)} = \dfrac{P(X = x | Y = y)P(Y = y)}{P(X = x)}$$
+    \item As for the case X, Y are continuous, we have that use the definition of conditioning probability
+        $$f_{Y|X}(y | x) = \dfrac{f_{Y, X}(y, x)}{f_X(x)}$$
+        $$f_{X|Y}(x | y) = \dfrac{f_{X, Y}(x, y)}{f_Y(y)}$$
+        So that we have that $$f_{Y | X}(y | x) = \dfrac{f_{Y, X}(y, x)}{f_X(x)} = \dfrac{f_{X | Y}(x | y)f_Y(y)}{f_X(x)}$$
+    \item As for the case X is discrete, Y is continuous, we have that use the definition of conditioning probability
+        Denote that $\varepsilon$ is a small number, then we have that
+        $$P[Y \in (y - \varepsilon, y + \varepsilon) | X = x] = \dfrac{P[X = x | Y \in (y - \varepsilon, y + \varepsilon)]P[Y \in (y - \varepsilon, y + \varepsilon)]}{P(X = x)}$$
+        $$\begin{aligned}
+            f_Y(y | X = x) &= \lim_{\varepsilon \to 0} \dfrac{P[Y \in (y - \varepsilon, y + \varepsilon) | X = x]}{2\varepsilon} \\
+                &= \lim_{\varepsilon \to 0} \dfrac{P[X = x | Y \in (y - \varepsilon, y + \varepsilon)]\dfrac{P[Y \in (y - \varepsilon, y + \varepsilon)]}{2 \varepsilon}}{P(X = x)} \\
+                &= \dfrac{P(X = x | Y = y)f_Y(y)}{P(X = x)}
+        \end{aligned}$$
+        So that we have that $$f_Y(y | X = x) = \dfrac{P(X = x | Y = y)f_Y(y)}{P(X = x)}$$
+    \item As for the case X is continuous, Y is discrete, we have that use the definition of conditioning probability
+        Denote that $\varepsilon$ is a small number, then we have that
+        $$\begin{aligned} \lim_{\varepsilon \to 0} P(Y = y | X \in (x - \varepsilon, x + \varepsilon)) 
+            &= lim_{\varepsilon \to 0} \dfrac{P[X \in (x - \varepsilon, x + \varepsilon) | Y = y]P(Y = y)}{P[X \in (x - \varepsilon, x + \varepsilon)]} \\
+            &= lim_{\varepsilon \to 0} \dfrac{\dfrac{P[X \in (x - \varepsilon, x + \varepsilon) | Y = y]}{2\varepsilon}P(Y = y)}{\dfrac{P[X \in (x - \varepsilon, x + \varepsilon)]}{2\varepsilon}} \\
+            &= \dfrac{f_X(x | Y = y)P(Y = y)}{f_X(x)}
+        \end{aligned}$$
+        So we get that $P(Y = y | X = x) = \dfrac{f_X(x | Y = y)P(Y = y)}{f_X(x)}$
+\end{enumerate}
+
 \end{homeworkProblem}
 
 \newpage
@@ -189,7 +217,7 @@ As we have that $U_1, U_2, U_3$ be i.i.d. Unif(0, 1), and let $L = min(U_1, U_2,
             \item As for the joint CDF of M and L, firstly we consider the event $L > l, M \leq m$, which is easy to calculate, that is $P(L > l, M \leq m) = (m-l)^3$, we have that $P(L \leq l, M \leq m) = P(M \leq m) - P(L > l, M \leq m) = m^3 - (m - l)^3 $ for $m \geq l$ and that $m, l \in [0, 1]$. \\
             \item As for the joint PDF of M and L, we have that $f(l, m) = \dfrac{\partial^2 P(L \leq l, M \leq m)}{\partial l\partial m} = 6(m - l)$ for $m, l \in [0, 1]$ and that $m \geq l$. \\
         \end{enumerate}
-    \item As for the conditional PDF of M given L, we firstly find the CDF, that is 
+    \item As for the conditional PDF of M given L, firstly we have that $P(L > l) = P(U_1 \geq l, U_2 \geq l, U_3 \geq l) = (1 - l)^3$. Then we have that $P(L \leq l) = 1 - P(L > l) = 1 - (1 - l)^3$, then we get that $f_L(l) = 3(1 - l)^2$, where $l \in [0, 1]$. So we get $f_{M | L}(m | l) = \dfrac{f(l, m)}{f_L(l)} = \dfrac{6(m - l)}{3(1 - l)^2} = \dfrac{2(m - l)}{(1 - l)^2}$, where $m, l \in [0, 1]$ and that $m \geq l$. \\
 \end{enumerate}
 
 \end{homeworkProblem}
@@ -197,7 +225,55 @@ As we have that $U_1, U_2, U_3$ be i.i.d. Unif(0, 1), and let $L = min(U_1, U_2,
 \newpage
 
 \begin{homeworkProblem}[5]
-    
+
+Firstly, we denote that $q = 1 - p$
+\begin{enumerate}[(a)]
+    \item As we have that $L = min(X, Y), M = max(X, Y)$, then we have that \\
+        for $l < m$, we have $P(L = l, M = m) = P(X = l, Y = m) + P(X = m, Y = l) = q^lpq^mp + q^mpq^lp = 2p^2q^{l + m}$\\
+        for $l = m$, we have $P(L = l, M = m) = P(X = l, Y = l) = q^lpq^lp = p^2q^{2l}$\\
+        for $l > m$, we have $P(L = l, M = m) = P(X = l, Y = m) + P(X = m, Y = l) = 0$\\
+        So we get that the joint PMF of L and M is \[P(L = l, M = m) = \left\{
+            \begin{array}{lr} 2p^2q^{l + m} & l < m \\ p^2q^{2l} & l = m \\ 0 & l > m 
+        \end{array}\right.\]
+        However, as we have that the joint PMF of X and Y depend on l and m's size, it is clearly that the joint can't be get by multiplying the function of l and m, so L and M are no independent. \\
+    \item As for the marginal distribution of L
+        \begin{enumerate}[(1)]
+            \item By using the joint PMF, we have that 
+                $$\begin{aligned}P(L = l) &= \sum_{m = l}^{\infty} P(L = l, M = m) \\ &= p^2q^{2l} + \sum_{m = l+1}^{\infty} 2p^2q^{l + m}\\
+                                        &= p^2q^{2l} + 2p^2q^l\sum_{m = l+1}^{\infty}q^m \\
+                                        &= p^2q^{2l} + 2p^2q^lq^{l + 1}\left(\dfrac{1 - q^{\infty}}{1 - q}\right) \\
+                                        &= p^2q^{2l} + 2p^2q^lq^{l + 1}\dfrac{1}{p} \\
+                                        &= p^2q^{2l} + 2pq^{2l + 1} \\
+                \end{aligned}$$
+            \item Also we we can use story, that is, consider 2 independent Bernuoilli independent sequence, at the time n, at least one of the 2 sequences has a success, 
+                then, we have that the probability of the event is $1 - (1 - p)^2$, so we have that $P(L = l) = (1 - (1 - q^2))^l(1 - q^2) = q^{2l}(1 - q^2)$, as we have that $(p + q)^2 = 1$, so $1 - q^2 = p^2 + 2pq$, so the $P(L = l) = q^{2l}(p^2 + 2pq) = p^2q^{2l} + 2pq^{2l + 1}. $
+        \end{enumerate}
+        So, both using joint PMF and using story, can we find the marginal distribution of L. 
+    \item As we have that $L = min(X, Y), M = max(X, Y)$, then we have that $L + M = X + Y$, then $EL + EM = E(L + M) = E(X + Y) = E(X) + E(Y)$, as $X$ and $Y$ i.i.d. $Geom(p)$, we have that $E(X) = E(Y) = 2\dfrac{q}{p} = \dfrac{2q}{p}$
+        Then, we find the $E(L)$, as $P(L = l) = p^2q^{2l} + 2pq^{2l + 1}$, so 
+        $$\begin{aligned}E(L) &= \sum_{l = 0}^{\infty}lP(L = l) \\
+            &= (p^2 + 2pq)\sum_{l = 1}^{\infty} lq^{2l}\\
+            q^2 E(L) &= (p^2 + 2pq)\sum_{l = 1}^{\infty} lq^{2l + 2} \\
+            E(L) - q^2E(l) &= (p^2 + 2pq)\sum_{l = 1}^{\infty} lq^{2l + 2} \\
+                &= (1 - q^2) \dfrac{q^2}{1 - q^2} \\
+            E(L) &= \dfrac{q^2}{1 - q^2} \\
+        \end{aligned}$$
+        So we get that $EM = \dfrac{2q}{p} - EL = \dfrac{2q}{p} - \dfrac{q^2}{1 - q^2} = \dfrac{(1 - p)(3 - p)}{p(2 - p)}$
+    \item As for the joint PMF of $L$ and $M - L$, we have that for $k \geq 0$
+        $$P(L = l, M - L = k) = P(L = l, M = k + l), $$ when $k > 0$, we have 
+        $$\begin{aligned} P(L = l, M - L = k) 
+            &= P(X = l, Y = k + l) + P(X = k + l, Y = l) \\ 
+            &= q^lpq^{k + l}p + q^{k + l}pq^lp \\
+            &= 2p^2q^{2l + k}. 
+        \end{aligned}$$
+        When $k = 0$, we have that $P(L = l, M - L = k) = p^2q^{2l + k}$. \\
+        As for the $P(L = l)$, we have $P(L = l) = (1 - q^2)q^{2l}$ \\
+        As for $P(M - L = k)$ For $k > 0$, we have that $$P(M - L = k) = \sum_{l = 0}^{\infty} P(L = l, M = l + k)P(L = l) = \dfrac{2p^2q^k}{1 - q^2}, $$ where $P(M - L = k)P(L = l) = P(L = l, M - L = k)$, $L$ and $M - L$ are independent \\
+        and for $k = 0$, we have that $P(M - L = k) = P(M = L) = \sum_{l = 0}^{\infty}P(M = L = l) = \dfrac{p^2q^k}{1 - q^2}$. \\
+        So we have for k = 0, $P(L = l, M - l = k) = P(M - L = k)P(L = l)$. \\
+        In conclusion, L and M - L are independent. 
+\end{enumerate}
+
 \end{homeworkProblem}
 
 \end{document}
