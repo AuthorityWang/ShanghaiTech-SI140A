@@ -169,7 +169,16 @@
 
 \begin{homeworkProblem}[2]
 
-
+\begin{enumerate}
+    \item First, we let $U$ be that the arrival time of the next Blissville company bus, then $U \sim Unif(0, 15)$ as the bus comes every 15 minutes, 
+        then we let $X \sim Expo(\dfrac{1}{15})$ is that be the arrival time of the next Blotchville company bus, then we have that 
+        $$P(X < U) = \int_{0}^{15} P(X < U | U = u)\dfrac{1}{15}du$$
+        So we have that $$P(X < U) = \dfrac{1}{15}\int_{0}^{15}(1 - e^{-\dfrac{u}{15}})du = \dfrac{1}{e}$$
+    \item As for the wait time, that is the wait until the first bus comes. Denote that the wait time is $W$, then we have $W = min(X, U)$
+        Then as for the CDF, we firstly calculate the $P(W > t)$, then we have that $$P(W > t) = P(X > t, U > t) = P(X > t)P(U > t) = e^{-\dfrac{t}{15}}(1 - \frac{t}{15})$$
+        So we get that the CDF of the waiting time is that $$P(W \leq t) = 1 - P(W > t) = 1 - e^{-\dfrac{t}{15}}(1 - \dfrac{t}{15}), $$
+        where $t \in (0, 10)$ and CDF is 0 for $t \leq 0$ and 1 for $t \geq 10$.
+\end{enumerate}
 
 \end{homeworkProblem}
 
@@ -177,7 +186,30 @@
 
 \begin{homeworkProblem}[3]
 
-
+\begin{enumerate}[(a)]
+    \item Firstly we denote that p is the probability that an egg hatch, and $q = 1 - p$. As we have that X is the number which hatch, and that Y is the number which do not hatch, we have that $N = X + Y$, 
+        then we have that $N, X, Y$ are dependent, as $N$ is the sum of two variables. 
+        Then we have that 
+        $$\begin{aligned} P(N = n, X = x, Y = y) &= P(X = x, Y = y) \\
+             &= \sum_{n = 0}^{\infty} P(X = x, Y = y | N = n)P(N = n) \\
+             &= P(X = x, Y = y | N = x + y)P(N = x + y) \\
+             &= P(X = x | N = x + y)P(N = x + y) \\
+             &= \begin{pmatrix}
+                    x + y \\
+                    x
+                \end{pmatrix} p^xq^y\dfrac{e^{-\lambda} \lambda^{x + y}}{(x + y)!} \\
+            &= \dfrac{e^{-\lambda p}(\lambda p)^x}{x!}\dfrac{e^{-\lambda p}(\lambda p)^y}{y!}
+        \end{aligned}$$
+        Where $n$, $x$, $y$ are nonnegative integers and $n = x + y$. N, X, Y are not independent, but as X and Y are independent, we also get that $X \sim Pois(\lambda p)$, $Y \sim Pois(\lambda q)$
+    \item As for the joint PMF of N, X, as from (a) we have that $X \sim Pois(\lambda p)$ and that $Y \sim Pois(\lambda q)$
+        Then we have $$P(N = n, X = x) = P(X = x, Y = n - x) = \dfrac{e^{-\lambda p}{\lambda p}^x}{x!} \dfrac{e^{-\lambda q}{\lambda q}^{n - x}}{(n - x)!},$$ where $n \geq x$ and that X and N are dependent as $N \geq X$
+    \item As for joint PMF of X, Y, from (a) we have that $$P(X = x, Y = y) = \dfrac{e^{-\lambda p}(\lambda p)^x}{x!}\dfrac{e^{-\lambda p}(\lambda p)^y}{y!}$$ where x and y are nonnegative integers
+    \item As for the relationship of X and N, from (a) we have that $X \sim Pois(\lambda p)$ and $Y \sim Pois(\lambda q)$, 
+        then we have that $$Cov(N, X) = Cov(X + Y, X) = Cov(X, X) + Cov(Y, X)$$
+        As X and Y are independent, then
+        $$Cov(N, X) = Var(X) = \lambda p$$
+        We then have $$Corr(N, X) = \dfrac{Cov(X, Y)}{\sqrt{Var(X)Var(Y)}} = \dfrac{\lambda p}{\sqrt{\lambda\lambda p}} = \sqrt{p}$$
+\end{enumerate}
 
 \end{homeworkProblem}
 
@@ -185,7 +217,9 @@
 
 \begin{homeworkProblem}[4]
 
-
+Denote that the two measurements are $X, Y$, as they are 2 independent standard Normal random variables, so $X$, $Y$ i.i.d. $\sim N(0, 1)$ and denote that $M = max(X, Y)$, $L = min(X, Y)$ \\
+So $max(x, y) + min(x, y) = x + y$, and $max(x, y) - min(x, y) = |x - y|$, we then have that
+$$E(M) + E(L) = E(M + L) = E(X + Y) = E(X) + E(Y) = 0$$
 
 \end{homeworkProblem}
 
