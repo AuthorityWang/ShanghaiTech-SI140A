@@ -91,11 +91,11 @@
 %   - Name
 %   - Student ID
 
-\newcommand{\hmwkTitle}{Homework\ \#01}
+\newcommand{\hmwkTitle}{Homework\ \#010}
 \newcommand{\hmwkClass}{Probability \& Statistics for EECS}
-\newcommand{\hmwkDueDate}{Feb 19, 2023}
-\newcommand{\hmwkAuthorName}{Ming Xiao}
-\newcommand{\hmwkAuthorID}{12345678}
+\newcommand{\hmwkDueDate}{Apr 23, 2023}
+\newcommand{\hmwkAuthorName}{Wang Penghao}
+\newcommand{\hmwkAuthorID}{2021533138}
 
 
 %
@@ -144,70 +144,56 @@
 
 \begin{homeworkProblem}[1]
 
-\begin{enumerate}
-    % inline
-    \item 
-    \( f(n) \)
-    
-    \item
-    $ f(n) $
-    
-    \item
-   	\begin{math}
-   		f(n)
-    \end{math}
-    
-    % Display mode
-    \item
-    \[
-    	f(n)
-    \]
-    
-    \item 
-    $$ 
-    	f(n)
-    $$
-    
-    \item
-    \begin{equation}
-        	f(n)
-    \end{equation}
+\begin{enumerate}[(1)]
+    \item As for X discrete, Y discrete, we have that 
+        $$P(X = x) = \sum_{y}^{} P(X = x, Y = y) = \sum_{y}^{} P(X = x | Y = y) P(Y = y)$$
+    \item As for X continuous, Y discrete, we have that 
+        $$P(X = x) = \sum_{-\infty}^{\infty}P(X = x | Y = y)f_Y(y)dy$$
+        Then we have that, $$\lim_{\varepsilon \to 0}P(X \in (x - \varepsilon, x + \varepsilon)) = \lim_{\varepsilon \to 0} \sum_{y}^{}P(X \in (x - \varepsilon, x + \varepsilon) | Y = y)P(Y = y) $$
+        So we have that $$f_X(x) = \sum_{y}^{} f_X(x | Y = y)P(Y = y)$$
+    \item As for X discrete, Y continuous, as we have that
+        $$P(X = x | Y = y) = \dfrac{f_Y(y | X = x)P(X = x)}{f_Y(y)}$$
+        Then we have $$P(X = x | Y = y)f_Y(y) = f_Y(y | X = x)P(X = x)$$
+        Then we integrate both sides with respect to y, we have that
+        $$\int_{-\infty}^{\infty}P(X = x | Y = y)f_Y(y)dy = \int_{-\infty}^{\infty}f_Y(y | X = x)P(X = x)dy$$
+        Then we have that $$f_X(x) = \int_{-\infty}^{\infty}f_Y(y | X = x)P(X = x)dy = P(X = x)$$
+        So we get that $$P(X = x) = \int_{-\infty}^{\infty}P(X = x | Y = y)f_Y(y)dy$$
+    \item As for X continuous, Y continuous, we have 
+        $$f_X(x) = \int_{-\infty}^{\infty}f_{X, Y}(x, y)dy = \int_{-\infty}^{\infty}f_{Y | X}(y | x)f_X(x)dy = \int_{-\infty}^{\infty}f_{Y | X}(y | x) dy$$
+        So we get that $$f_X(x) = \int_{-\infty}^{\infty}f_{Y|X}(y | x)dy$$
 \end{enumerate}
 
 \end{homeworkProblem}
 
+\newpage
+
 \begin{homeworkProblem}[2]
 
-\begin{enumerate}
-	% alignment
-	\item
-    \[
-    	\begin{split}
-	    		n^{2} + n + 1 
-	    		\le ~& n^{2} + n^{2} + n^{2} \\
-	    		= ~& 3 n^{2} \\
-	    		\le ~& c \cdot 2 n^{3}
-	    	\end{split}
-    \]
-    
-    \item
-    \begin{equation}
-    	\begin{aligned}
-	    		n^{2} + n + 1 
-	    		\le ~& n^{2} + n^{2} + n^{2} \\
-	    		= ~& 3 n^{2} \\
-	    		\le ~& c \cdot 2 n^{3}
-		\end{aligned}
-	\end{equation}
-	
-	\item
-	\begin{align}
-	    	n^{2} + n + 1 
-	    	\le ~& n^{2} + n^{2} + n^{2} \\
-	    	= ~& 3 n^{2} \\
-	    	\le ~& c \cdot 2 n^{3}
-	\end{align}
-\end{enumerate}
+
+
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[3]
+
+
+
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[4]
+
+
+
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[5]
+
+
 
 \end{homeworkProblem}
 
