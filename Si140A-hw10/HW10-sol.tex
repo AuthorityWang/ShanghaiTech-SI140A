@@ -177,7 +177,7 @@
     \item As for the wait time, that is the wait until the first bus comes. Denote that the wait time is $W$, then we have $W = min(X, U)$
         Then as for the CDF, we firstly calculate the $P(W > t)$, then we have that $$P(W > t) = P(X > t, U > t) = P(X > t)P(U > t) = e^{-\dfrac{t}{15}}(1 - \frac{t}{15})$$
         So we get that the CDF of the waiting time is that $$P(W \leq t) = 1 - P(W > t) = 1 - e^{-\dfrac{t}{15}}(1 - \dfrac{t}{15}), $$
-        where $t \in (0, 10)$ and CDF is 0 for $t \leq 0$ and 1 for $t \geq 10$.
+        where $t \in (0, 15)$ and CDF is 0 for $t \leq 0$ and 1 for $t \geq 15$.
 \end{enumerate}
 
 \end{homeworkProblem}
@@ -190,7 +190,7 @@
     \item Firstly we denote that p is the probability that an egg hatch, and $q = 1 - p$. As we have that X is the number which hatch, and that Y is the number which do not hatch, we have that $N = X + Y$, 
         then we have that $N, X, Y$ are dependent, as $N$ is the sum of two variables. 
         Then we have that 
-        $$\begin{aligned} P(N = n, X = x, Y = y) &= P(X = x, Y = y) \\
+        $$\begin{aligned} P(N = n, X = x, Y = y) 
              &= \sum_{n = 0}^{\infty} P(X = x, Y = y | N = n)P(N = n) \\
              &= P(X = x, Y = y | N = x + y)P(N = x + y) \\
              &= P(X = x | N = x + y)P(N = x + y) \\
@@ -219,7 +219,20 @@
 
 Denote that the two measurements are $X, Y$, as they are 2 independent standard Normal random variables, so $X$, $Y$ i.i.d. $\sim N(0, 1)$ and denote that $M = max(X, Y)$, $L = min(X, Y)$ \\
 So $max(x, y) + min(x, y) = x + y$, and $max(x, y) - min(x, y) = |x - y|$, we then have that
-$$E(M) + E(L) = E(M + L) = E(X + Y) = E(X) + E(Y) = 0$$
+$$E(M) + E(L) = E(M + L) = E(X + Y) = E(X) + E(Y) = 0$$ Then we have that as $X - Y = \sqrt{X}$ where $Z \sim N(0, 1)$, and that $E(|X - Y|) = \sqrt{2}E|Z|$, we then have that 
+By using 1D LOTUS, we have that $$E|Z| = \int_{-\infty}^{\infty}|z|\dfrac{1}{\sqrt{2\pi}}e^{-z^2/2}dz = 2\int_{0}^{\infty}z\dfrac{1}{\sqrt{2\pi}}e^{-z^2/2}dz = \sqrt{\dfrac{2}{\pi}}$$
+So we get that $$E(M) - E(L) = E(M - L) = E(|X - Y|) = \dfrac{2}{\sqrt{\pi}}$$
+So from $E(M) + E(L)$ and that $E(M) - E(L)$, we get that $E(M) = \dfrac{1}{\sqrt{\pi}}$, and that $E(L) = -\dfrac{1}{\sqrt{\pi}}$, 
+then we also get that as $ML = XY$ and that $E(X) = E(Y) = 0$, we have that $$Cov(M, L) = E(ML) - E(M)E(L) = E(XY) + \dfrac{1}{\pi} = 0 + \dfrac{1}{\pi} = \dfrac{1}{\pi}$$. \\
+Then as for $Var(M)$ and $Var(L)$, we have that as $E(X) = E(Y) = 0$, then $$Var(X - Y) = E[(X - Y)^2] - (E[X - Y])^2 = E[(X - Y)^2] - (E(X) - E(Y))^2 = E[(X - Y)^2] = 2$$
+As we also have that $X - Y = M - L$, then we have that $$Var(X - Y) = E[(M - L)^2] = E[M^2] + E[L^2] - 2E[ML]$$
+Then we have that $$Var(X - Y) = E[M^2] + E[L^2] - 2E[x]E[Y] = E[M^2] + E[L^2]$$
+As for the property of Variance, we have that $Var(M) = E(M^2) - EM^2$, the same for L. 
+So we get $$Var(X - Y) = Var(M) + EM^2 + Var(L) + EL^2 = Var(M) + Var(L) = \dfrac{2}{\pi}$$
+Then as for the property of Normal distribution, we have $Var(M) = Var(L)$, we get that
+$$Var(M) = Var(L) = (2 - \dfrac{2}{\pi})/2 = 1 - \dfrac{1}{\pi}$$
+So we get the Corr is that 
+$$Corr(M, L) = \dfrac{Cov(M, L)}{\sqrt{Var(M)Var(L)}} = \dfrac{\dfrac{1}{\pi}}{1 - \dfrac{1}{\pi}} = \dfrac{1}{\pi - 1}$$
 
 \end{homeworkProblem}
 
@@ -227,7 +240,32 @@ $$E(M) + E(L) = E(M + L) = E(X + Y) = E(X) + E(Y) = 0$$
 
 \begin{homeworkProblem}[5]
 
-
+\begin{enumerate}[(a)]
+    \item As for the relationship between $Cov(X, Y)$ and sample variance, according to the definition of $Cov$, we have that
+        $$Cov(X, Y) = E([X - EX][Y - EY])$$
+        As $EX = \overline{x}$ and $EY = \overline{y}$, then we have that
+        $$Cov(X, Y) = E([X - \overline{x}][Y - \overline{y}]) = \dfrac{1}{n}\sum_{i = 1}^{n}(x_i - \overline{x})(y_i = \overline{y}).$$
+        Which is the definition of sample covariance, so we get that $$Cov(X, Y) = r.$$
+    \item
+        As for the total signed area of the rectangles, we have that the area is that 
+        $$S = \sum_{i<j}^{}(x_i - x_j)(y_i - y_j).$$
+        Then as for $$E((X - \widetilde{X})(Y - \widetilde{Y})) = E(XY) + E(\widetilde{X}\widetilde{Y}) - E(X\widetilde{Y}) - E(Y \widetilde{X})$$
+        As according to the definition of the $\widetilde{X}$ and $\widetilde{Y}$, we have that they have the same distribution with $X$ and $Y$. 
+        So, we have that as $X$ and $\widetilde{Y}$, $Y$ and $\widetilde{X}$ are independent, $$E(X\widetilde{Y}) = E(Y\widetilde{X}) = E(X)E(Y)$$ and that $$E(\widetilde{X}\widetilde{Y}) = E(XY)$$
+        So we have that $$E((X - \widetilde{X})(Y - \widetilde{Y})) = 2E(XY) - 2E(X)E(Y) = 2Cov(X, Y)$$
+        \begin{enumerate}[1.]
+            \item As we have that $$E((X - \widetilde{X})(Y - \widetilde{Y})) = \dfrac{0*n + 2\sum_{i < j}^{}(x_i - x_j)(y_i - y_j)}{n^2} = \dfrac{2A}{n^2}$$
+            \item As we have that $$E((X - \widetilde{X})(Y - \widetilde{Y})) = 2Cov(X, Y), $$
+                we get that $$Cov(X, Y) = \dfrac{A}{n^2}. $$
+        \end{enumerate}
+    \item As for the following property, we have 
+        \begin{enumerate}[(i)]
+            \item As $W_1, W_2$ are 2 r.v.s, then we as for exchange $W_1, W_2$, we consider that as exchange 2 axis in a coordinates, the space stay the same, so we have that $$Cov(W_1, W_2) = Cov(W_2, W_1).$$
+            \item By mulitiply a constant to the axis, we can consider it as stretch the rectangle area on the corresponding axis, so that $$Cov(a_1W_1, a_2W_2) = a_1a_2Cov(W_1, W_2)$$
+            \item By adding a constant on a axis, this operation can be considered as do shift to the rectangle on the corresponding axis, so will not do any effect to the area. So we have that $$Cov(W_1 + a_1, W_2, a_2) = Cov(W_1, W_2). $$
+            \item As for the $W_2 + W_3$, we can consider that it as the combination of 2 rectangles, so that whether we split it to 2 rectangles or in a single rectangle is the same area. So we have that $$Cov(W_1, W_2 + W_3) = Cov(W_1, W_2) + Cov(W_1, W_3)$$
+        \end{enumerate}
+\end{enumerate}
 
 \end{homeworkProblem}
 
