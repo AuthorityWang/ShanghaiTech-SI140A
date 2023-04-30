@@ -145,7 +145,24 @@
 \begin{homeworkProblem}[1]
 
 \begin{enumerate}[(a)]
-    \item As for $(X, Y, X+Y)$, we have that 
+    \item $(X, Y, X + Y)$ is a MVN,
+        as for $(X, Y, X+Y)$, we have that assume that $a, b, c$ are parameters that $a, b, c \in R$, then we have that according to the definition of $MVN$, we let 
+        $$M = aX + bY + c(X + Y) = (a + c)X + (b + c)Y.$$
+        Then we have that as X, Y be i.i.d. $N(0, 1)$, then with the linear property of Normal distribution, we have that the M is a linear combination of 2 independent normal distribution,
+        so for any $a, b, c \in R$, the linear combination of the $X$, $Y$ has a Normal distribution. So we have that the linear combination of $X, Y, X + Y$ also has a Normal distribution. \\
+        So we have that $(X, Y, X+Y)$ is a multivariate normal distribution.
+    \item $(X, Y, SX + SY)$ is not a MVN, as for $(X, Y, SX + SY)$, we could prove it is not a MVN by showing that one linear combination is not continuous. 
+        As for all parameters are 1, we have $M = X + Y + SX + SY$, then as for $P(M = 0)$, as Normal distribution is a continuous distribution, then $P(M = 0) = 0$, then as for $M = X + Y + SX + SY$, we have that there 2 cases
+        \begin{enumerate}
+            \item $S = -1$, then as $S$ is a random sign with equal probabilities, then the probability of $S = -1$ is $\frac{1}{2}$, then we have that under this case, $P(M = 0) = \frac{1}{2}$
+            \item $X + Y = 0$, then as $X, Y$ i.i.d. $N(0, 1)$, we have that the probability is 0 due to continuous variable. 
+        \end{enumerate}
+        Then we have that $P(M = 0) = P(S = -1) + P(X + Y = 0) - P(S = -1, X + Y = 0) = \dfrac{1}{2} + 0 - 0 = \dfrac{1}{2}$, due to that S is independent with $X, Y$. So we have that this is contradictory, so we have that $(X, Y, SX + SY)$ is not a MVN.
+    \item $(SX, SY)$ is a MVN, we firstly denote that $M = aX + bY$, where $a, b \in R$, then we use the linear property of Normal distribution, we have that the $M$ is also a Normal distribution. Then as we have $O = aSX + aSY = SM$, we then need to prove that SM is a Normal distribution. 
+        As for $o \in R$, we have by LOTP $$P(O \leq o) = P(SM \leq o) = P(SM \leq o | S = 1)P(S = 1) + P(SM \leq o | S = -1)P(S = -1)$$
+        Then as $S$ has equal probability of 1 and -1, we have $$P(O \leq o) = P(M \leq o | S = 1)\dfrac{1}{2} + P(-M \leq o | S = -1)\dfrac{1}{2}$$
+        As $S$ and $X, Y$ are independent and that M is a Normal distribution, we have that $$P(O \leq o) = P(M \leq o)\dfrac{1}{2} + P(-M \leq o)\dfrac{1}{2} = P(M \leq o)\dfrac{1}{2} + P(M \leq o)\dfrac{1}{2} = P(M \leq o)$$
+        So we have that $O = aSX + bSY = SM$ is also a Normal distribution, where $a, b \in R$. So we have that $(SX, SY)$ is a MVN.
 \end{enumerate}
 
 \end{homeworkProblem}
@@ -154,7 +171,20 @@
 
 \begin{homeworkProblem}[2]
 
-
+\begin{enumerate}[(1)]
+    \item Firstly we prove $T$ and $W$ are independent using property of MVN, we have that as $X, Y$ i.i.d. $N(0, 1)$, then as for $T = X - Y$ and $W = X - Y$, 
+        we use the property of Normal distribution, we have that as both $T$ and $W$ are linear combinations of Normal distribution, then $T, W$ are also Normal distribution. 
+        We denote $H = aT + bW$, we have that $$H = aT + bW = a(X + Y) + b(X - Y) = (a + b)X + (a - b)Y, $$ as $a, b\in R$, then $(a + b), (a - b)$ also $\in R$. So we have that $H$ also has a Normal distribution. So that the $(T, W)$ is a MVN. Then we attempt to use the Theorem, that if $(X, Y)$ is Bivariate Normal and $Corr(X, Y) = 0$, then X and Y are independent. 
+        From the above proof, we already have that $(T, W)$ is a MVN, then we also have that they are bivariate Normal. Then as for $Corr(T, W)$, we have that as for the $Cov(T, W)$, we have that
+        $$Cov(T, W) = Cov(X + Y, X - Y) = Cov(X, X) - Cov(X, Y) + Cov(Y, X) - Cov(Y, Y)$$
+        As $X, Y$ are independent, we have that $$Cov(T, W) = Var(X) - Var(Y)$$ as $X, Y$ i.i.d. $N(0, 1)$, we have that $Var(X) - Var(Y) = 0$, so we get that $Cov(T, W) = 0$
+        Then we have that $$Corr(T, W) = \dfrac{Cov(T, W)}{\sqrt{Var(T)Var(W)}} = 0$$
+        So with the theorem, we get that $T, W$ are independent.
+    \item Then we prove $T$ and $W$ are independent using change of variables. We again need to prove that $Cov(T, W) = 0$, we make tranformation first, we have that the relation between $X, Y$ and $T, W$: denote that the joint PMF of $X, Y$ is $f_{X, Y}(x, y)$, the joint PMF of $T, W$ is $f_{T, W}(t, w)$, then we have that 
+        $$f_{T, W}(t, w) = f_{X, Y}(x, y)|\dfrac{\partial{(x, y)}}{\partial{(t, w)}}| = f_{X, Y}(x, y)|-\dfrac{1}{4} - \dfrac{1}{4}| = f_{X, Y}(x, y)|-\dfrac{1}{2}| = \dfrac{1}{2}f_{X, Y}(x, y)$$
+        So we get that as $X = \dfrac{T + W}{2}$ and that $Y = \dfrac{T - W}{2}$, we get $$f_{T, W}(t, w) = \dfrac{1}{\sqrt{2}}\dfrac{1}{\sqrt{2\pi}}e^{-\dfrac{1}{2}(\dfrac{t + w}{2})^2} \dfrac{1}{\sqrt{2}}\dfrac{1}{\sqrt{2\pi}}e^{-\dfrac{1}{2}(\dfrac{t - w}{2})^2} = \dfrac{1}{2\sqrt{\pi}}e^{-\dfrac{1}{4}t^2}\dfrac{1}{2\sqrt{\pi}}e^{-\dfrac{1}{4}w^2}$$
+        from where we see that $T, W$ are also Normal distribution $N(0, 2)$, so that $T, W$ are independent. 
+\end{enumerate}
 
 \end{homeworkProblem}
 
@@ -162,7 +192,18 @@
 
 \begin{homeworkProblem}[3]
     
-
+Firstly we find the relationship between $R, \theta$ and $X, Y$, we get that 
+$$X = (cos\theta) R$$ $$Y = (sin\theta) R$$
+Then we make tranformation between $R, \theta$ and $X, Y$, we denote that the joint PDF of $X, Y$ are $f_{X, Y}(x, y)$ the joint PDF of $R, \theta$ are $f_{R, \theta}(r, \theta)$, so we get that 
+$$f_{R, \theta}(r, \theta) = f_{X, Y}(x, y)|J| $$where the $\left |J \right |$ is $$ \left |\dfrac{\partial(x, y)}{\partial(r, \theta)}\right | = \left | \begin{matrix}
+    cos\theta& -rsin\theta \\ sin\theta& rcos\theta
+\end{matrix} \right | = r$$
+So we get that as $X, Y$ i.i.d. $N(0, 1)$, we have that $$f_{R, \theta}(r, \theta) = \dfrac{1}{\sqrt{2\pi}}e^{-\dfrac{1}{2}x^2}\dfrac{1}{\sqrt{2\pi}}e^{-\dfrac{1}{2}y^2}r = \dfrac{1}{2\pi}re^{-\dfrac{1}{2}r^2}$$
+Then we can divide this into 2 parts, we have that $f_R(r) = re^{-\dfrac{1}{2}r^2}$, $f_{\theta}(\theta) = \dfrac{1}{2\pi}$, 
+where we have that as $\theta \in (0, 2\pi)$ and that $r \in (0, \infty)$ 
+$$\int_{0}^{2\pi}f_{\theta}(\theta)d\theta = \int_{0}^{2\pi}\dfrac{1}{2\pi}d\theta = 1.$$ 
+$$\int_{0}^{\infty}f_{R}(r) = \int_{0}^{\infty}re^{-\dfrac{1}{2}r^2}dr = \int_{0}^{\infty}-e^{-\dfrac{r^2}{2}}d(-\dfrac{r^2}{2}) = 1$$
+where $f_{\theta}(\theta)$ is a valid PDF, and the $f_R(r)$ is also a valid PDF. So we get that $R, \theta$ are independent. 
 
 \end{homeworkProblem}
 
@@ -170,7 +211,54 @@
 
 \begin{homeworkProblem}[4]
     
-
+\begin{enumerate}
+    \item As for the marginal PDF of $T$ and $W$, we again apply change of variable to this. 
+        As we have that $T = X + Y$ and that $W = \dfrac{X}{Y}$, then we firstly find the distribution of $T$ and $W$. 
+        We have that $$f_{T, W}(t, w) = f_{X, Y}(x, y)\left | J \right | = f_{X, Y}(x, y)\left| \begin{matrix}
+            \dfrac{\partial(x, y)}{\partial(t, w)}
+        \end{matrix}\right|$$
+        Where as $X = \dfrac{WT}{X + 1}$, $Y = \dfrac{T}{W + 1}$
+        $$\left| \begin{matrix}
+            \dfrac{\partial(x, y)}{\partial(t, w)}
+        \end{matrix}\right| = \left|\begin{matrix}
+            \dfrac{w}{w + 1}& \dfrac{t}{(w + 1)^2} \\ \dfrac{1}{(w + 1)}& \dfrac{-t}{(w + 1)^2}
+        \end{matrix}\right| = \dfrac{t}{(w + 1)^2}, $$
+        as $t \in (0, +\infty)$. Then as $X, Y$ i.i.d. $Expo(\lambda)$, we have that $$f_{T, W}(t, w) = \lambda e^{-\lambda x}\lambda e^{-\lambda y}\dfrac{t}{(w + 1)^2} = \dfrac{\lambda^2te^{-\lambda t}}{(w + 1)^2}$$
+        Then we divide it into 2 parts, where $f_T(t) = \lambda^2te^{-\lambda t}$, $f_W(w) = \dfrac{1}{(w + 1)^2}$, we then have that as $w \in (0, +\infty)$ and $t \in (0, \infty)$
+        $$\int_{0}^{\infty}\dfrac{1}{(w + 1)^2}dw = -\dfrac{1}{\infty + 1} + \dfrac{1}{1} = 1$$ 
+        $$\int_{0}^{\infty} \lambda^2te^{-\lambda t}dt = -\lambda \int_{0}^{\infty} td(e^{-\lambda t}) = 1$$ both of them is a valid PDF, so we get that the joint PDF of $T, W$ is $$f_{T, W}(t, w) = \dfrac{\lambda^2te^{-\lambda t}}{(w + 1)^2}$$
+        and the marginal PDF of T, W are
+        $$f_{T}(t) = \lambda^2te^{-\lambda t}$$
+        $$f_W(w) = \dfrac{1}{(w + 1)^2}$$where $t \in (0, \infty)$, $w \in (0, \infty)$
+    \item As we have that $X, Y, Z$ i.i.d. $Unif(0, 1)$ and that $W = X + Y + Z$, so we have that $W \in [0, 3]$. Then as for $M = X + Y$, we have that $M \in [0, 2]$
+        \begin{enumerate}
+            \item $m \in [0, 1]$, we have that $f_M(m) = \int_{0}^{m}f_X(x)f_Y(m - x)dx = \int_{0}^{m}dx = m$.
+            \item $m \in (1, 2]$, we have that $f_M(m) = \int_{m - 1}^{1}f_X(x)f_Y(m - x)dx = 2 - m$.
+        \end{enumerate}
+        Then as for the $W = X + Y + Z$, we have that $W = M + Z$, then there are 3 cases
+        \begin{enumerate}
+            \item $w \in [0, 1]$, $f_W(w) = \int_{0}^{w}tdt = \dfrac{1}{2}w^2$
+            \item $w \in (1, 2]$, $f_W(w) = \int_{w-1}^{1}tdt + \int_{1}^{w}(2 - t)dt = -w^2 + 3w - \dfrac{3}{2}$
+            \item $w \in (2, 3]$, $f_W(w) = \int_{w - 1}^{2}(2 - t)dt = \dfrac{1}{2}w^2 - 3w + \dfrac{9}{2}$
+        \end{enumerate}
+        So finally we get that $$w \in [0, 1], f_W(w) = \dfrac{1}{2}w^2$$
+        $$w \in (1, 2], f_W(w) = -w^2 + 3w - \dfrac{3}{2}$$
+        $$w \in (2, 3], f_W(w) = \dfrac{1}{2}w^2 - 3w + \dfrac{9}{2}$$
+        for other w, $f_W(w) = 0$
+    \item To show M has the same distribution as $X + \dfrac{1}{2}Y$, we use 2 methods
+        \begin{enumerate}
+            \item Property of the Exponential, we have that as $M = max(X, Y)$, we denote that $L = min(X, Y)$, we then have that with the property of expoential distribution, $L \sim Expo(2\lambda)$, then as for $\dfrac{1}{2}Y$, we denote that $\dfrac{1}{2}Y = N$, 
+                then $P(N \leq n) = P(\dfrac{1}{2}Y \leq n) = P(Y \leq 2n)$, so we get that $\dfrac{1}{2}Y \sim Expo(2\lambda)$. So $L = \dfrac{1}{2}Y$, as $X + Y = M + L$, we get that $M = X + Y - L = X + Y - \dfrac{1}{2}Y = X + \dfrac{1}{2}Y$. 
+                So we get that $M$ has the same distribution as $X + \dfrac{1}{2}Y$. 
+            \item Convolution, we have that firstly as for the $$F_M(m) = P(M \leq m) = P(max(X, Y) \leq m) = P(X \leq m, Y \leq m)$$
+                As we have that $X, Y$ are independent, we get $$F_M(m) = P(X \leq m)P(Y \leq m) = (1 - e^{-\lambda m})^2. $$
+                Then we have $$f_M(m) = F_M(m)' = 2\lambda e^{-\lambda m} - 2\lambda e^{-2\lambda m}$$
+                Then as for $X + \dfrac{1}{2}Y$, we have that denote that $X + \dfrac{1}{2}Y = P$, and $\dfrac{1}{2}Y = Q$, then we get $P = X + Q$
+                $$f_P(p) = \int_{0}^{p} = f_X(x)f_Q(p - q)dp = \int_{0}^{t}\lambda e^{-\lambda x}2\lambda e^{-2\lambda (p - x)}dx = 2\lambda^2e^{-2\lambda t}\int_{0}^{t}e^{\lambda x}dx$$
+                We get that $$f_P(p) = 2\lambda e^{-\lambda p} - 2\lambda e^{-2\lambda p}$$
+                which has the same form with $f_M(m)$. So we get that $M$ and $X + \dfrac{1}{2}Y$ has the same distribution. 
+        \end{enumerate}
+\end{enumerate}
 
 \end{homeworkProblem}
 
