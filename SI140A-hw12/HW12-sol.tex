@@ -144,7 +144,36 @@
 
 \begin{homeworkProblem}[1]
 
-
+\begin{enumerate}[(a)]
+    \item As for the posterior distribution, we have that is $$p | X_1 = x_1, X_2 = x_2, ..., X_n = x_n$$
+        As the prior is Beta(1, 1), then we have that by using the Beta Binomial conjugacy, we get that the posterior
+        with $X_1 = x_1$ is that $$Beta(1 + x_1, 1 + (1 - x_1))$$
+        The same, with additional given $X_2 = x_2$, we get that the posterior is that
+        $$Beta(1 + x_1 + x_2, 1 + (1 - x_1) + (1 - x_2))$$
+        So, given that $X_1 = x_1, X_2 = x_2, ..., X_n = x_n$
+        we get that the posterior is that $$Beta(1 + \sum_{j = 1}^{n}x_j, 1 + n - \sum_{j = 1}^{n}x_j)$$
+        So we get that $$p | X_1 = x_1, X_2 = x_2, ..., X_n = x_n \sim Beta(1 + \sum_{j = 1}^{n}x_j, 1 + n - \sum_{j = 1}^{n}x_j)$$
+        From where we see that the parameters of the distribution is only consisted of $\sum_{j = 1}^{n}x_j$
+        so we get that the distribution only depends on the sum of $x_j$. 
+    \item Proof of Laplace's law of succession, denote the sum of $X_j$ is that
+        $$S_n = \sum_{j = 1}^{n}X_j, $$ use the LOTP, denote that $f(p | S_n = k)$ is the posterior PDF, we get that 
+        $$P(X_{n + 1} = 1 | S_n = k) = \int_{0}^{1}P(X_{n + 1} = 1 | p, S_n = k)f(p | S_n = k)dp$$
+        then we have that 
+        $$\begin{aligned}
+            P(X_{n+1} = 1 | S_n = k) 
+                &= \dfrac{\Gamma(n + 2)}{\Gamma(k + 1)\Gamma(n - k + 1)}\int_{0}^{1}pp^k(1 - p)^{n - k}dp \\
+                &= \dfrac{\Gamma(n + 2)}{\Gamma(k + 1)\Gamma(n - k + 1)} \dfrac{\Gamma(k + 2)\Gamma(n - k + 1)}{\Gamma(n + 3)} \\
+                &= \dfrac{k + 1}{n + 2}.
+        \end{aligned}$$
+    \item From the perspective of Beta-Binomial conjugacy, we have that as the 
+        Laplace's Law of Succession states that if we observe an event N times, of which k times are successful, 
+        then the probability of success in the next event is $\dfrac{k + 1}{N + 2}$. This can be presented as Beta distribution.
+        If we assume a prior probability of beta(a,b), then after observing k successes and (N-k) failures, 
+        the posterior probability is beta(a+k,b+(N-k)). The Beta distribution has conjugacy with the binomial distribution, 
+        which means that we can use the Beta distribution to represent the posterior distribution of the binomial distribution. 
+        Therefore, Laplace's Law of Succession can be reinterpreted as a Bayesian inference process on the binomial distribution 
+        using the Beta-Binomial conjugacy relationship.
+\end{enumerate}
 
 \end{homeworkProblem}
 
@@ -152,7 +181,40 @@
 
 \begin{homeworkProblem}[2]
 
-
+\begin{enumerate}[(a)]
+    \item By using LOTUS, as we have that $p \sim Beta(a, b)$
+        we have that $E(p^2(1 - p)^2)$ can be written as
+        $$\begin{aligned}
+            E(p^2(1 - p)^2) 
+                &= \dfrac{\Gamma(a + b)}{\Gamma(a)\Gamma(b)}\int_{0}^{1}p^2(1 - p)^2p^{a - 1}(1 - p)^{b - 1}dp \\
+                &= \dfrac{\Gamma(a + b)}{\Gamma(a)\Gamma(b)}\int_{0}^{1}p^{a + 1}(1 - p)^{b + 1}dp \\
+                &= \dfrac{\Gamma(a + b)}{\Gamma(a)\Gamma(b)}\dfrac{\Gamma(a + 2)\Gamma(b + 2)}{\Gamma(a + b + 4)}
+        \end{aligned}$$
+        With the property of Gamma function, we have that
+        $$\Gamma(a + 2) = (a + 1)\Gamma(a + 1) = (a + 1)a\Gamma(a), $$
+        and that 
+        $$\Gamma(a + b + 4) = (a + b + 3)\Gamma(a + b + 3) = (a + b + 3)(a + b + 2)(a + b + 1)(a + b)\Gamma(a + b). $$
+        So we get that 
+        $$E(p^2(1 - p)^2) = \dfrac{(a + 1)a(b + 1)b}{(a + b + 3)(a + b + 2)(a + b + 1)(a + b)}$$
+    \item The posterior distribution only depends on the fact that A won exactly 6 of the 10 games on record.
+        As for a sequence event, we need to update the distribution, firstly, we get Beta(a, b), where a = 1, b = 1, 
+        then if a A wins occurs, the a += 1, if a B wins occurs, the b += 1. From the update process, 
+        we get that the order of outcomes do not effect the final parameters of Beta distribution, 
+        so we get that it is the fact that A won exactly 6 of 10 games on record. 
+    \item As the input event is that AAABBAABAB, where A wins 6 times, and B wins 4 times. 
+        So we get that the final posterior distribution for p given historical data is 
+        $$p | historical data \sim Beta(6 + 1, 4 + 1)$$ which is 
+        $$p | historical data \sim Beta(7, 5)$$
+    \item As for the indicator of A, we have that they are conditionally independent given p, 
+        however, without given p, they are not independent. Thus, given p, the indicators are uncorrelated, 
+        without given p, the indicators are postively correlated as if A wins at the first match, 
+        the p will increased, as the A is more believed to win. 
+    \item As for the probability that the match is not yet decided when going into the fifth game
+        There must be 2 wins for A and 2 wins for B, as in (c), we get the posterior distribution is Beta(7, 5), so we get that the probability is
+        $$\begin{pmatrix}
+            4 \\ 2
+        \end{pmatrix} p^2(1 - p)^2 = 6\dfrac{(7 + 1)7(5 + 1)5}{(7 + 5 + 3)(7 + 5 + 2)(7 + 5 + 1)(7 + 5)} = \dfrac{4}{13}. $$
+\end{enumerate}
 
 \end{homeworkProblem}
 
