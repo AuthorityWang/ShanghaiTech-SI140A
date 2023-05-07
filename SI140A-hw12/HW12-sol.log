@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.9.25)  6 MAY 2023 13:24
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.9.25)  7 MAY 2023 12:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -400,8 +400,7 @@ File: l3backend-xetex.def 2022-02-07 L3 backend support: XeTeX
 \g__pdf_backend_object_int=\count304
 \g__pdf_backend_annotation_int=\count305
 \g__pdf_backend_link_int=\count306
-)
-No file HW12-sol.aux.
+) (./HW12-sol.aux)
 \openout1 = `HW12-sol.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 139.
@@ -414,7 +413,7 @@ LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 139.
 LaTeX Font Info:    ... okay on input line 139.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 139.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 139.
-(c:/texlive/2022/texmf-dist/tex/latex/base/ts1cmr.fd
+ (c:/texlive/2022/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 139.
@@ -433,14 +432,14 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 141.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-] [2] (./HW12-sol.aux) ) 
+] [2] [3] [4] [5] [6] (./HW12-sol.aux) ) 
 Here is how much of TeX's memory you used:
- 13879 strings out of 476179
- 291657 string characters out of 5813072
- 574997 words of memory out of 5000000
- 34374 multiletter control sequences out of 15000+600000
- 475667 words of font info for 62 fonts, out of 8000000 for 9000
+ 13871 strings out of 476179
+ 291577 string characters out of 5813072
+ 569001 words of memory out of 5000000
+ 34366 multiletter control sequences out of 15000+600000
+ 473968 words of font info for 54 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 100i,15n,104p,423b,258s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 100i,11n,104p,423b,258s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on HW12-sol.pdf (2 pages).
+Output written on HW12-sol.pdf (6 pages).
