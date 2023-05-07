@@ -221,8 +221,64 @@
 \newpage
 
 \begin{homeworkProblem}[3]
-    
 
+\begin{enumerate}
+    \item As for the joint PDF of $U_{(1)}, U_{(2)}, ..., U_{(n)}$, 
+        as we have that they have the order relationship, we then get that 
+        $$0 < u_{(1)} < ... < u_{(n)} < 1, $$
+        denote that the joint PDF is $f_{U_{(1)}, ..., U_{(n)}}, $
+        we then get that as there are $n!$ possible orderings of the $U_{(i)}$,
+        $$f_{U_{(1)}, ..., U_{(n)}} = n!\prod_{i = 1}^{n}f_{U_{(i)}}(u_{(i)})$$
+        Then as all the $U_{(i)}$ are i.i.d. uniform distribution, we get that
+        $$f_{U_{(1)}, ..., U_{(n)}} = n!\prod_{i = 1}^{n}1 = n!$$
+    \item As for the joint PDF of $U_{(j)}, U_{(k)}$, where $1 \leq j < k \leq n$, 
+        then we denote that the joint PDF is $f_{U_{(j)}, U_{(k)}}$, we then 
+        firstly calculate the number of permutations of $U_{(j)}, U_{(k)}$,
+        we firstly need to choose j - 1 from n numbers, then 1 for j, the same for others. 
+        We get that the number of permutations is
+        $$\begin{pmatrix}
+            n \\ 1
+        \end{pmatrix}
+        \begin{pmatrix}
+            n - 1 \\ 1
+        \end{pmatrix}
+        \begin{pmatrix}
+            n - 2 \\ j - 1
+        \end{pmatrix}
+        \begin{pmatrix}
+            n - j - 1 \\ k - j - 1
+        \end{pmatrix}
+        \begin{pmatrix}
+            n - k \\ n - k
+        \end{pmatrix}
+        = \dfrac{n!}{(j - 1)!(k - j - 1)!(n - k)!}$$
+        The same as (a), we get that CDF for Unif distribution for $U_{(k)}$ is that $u_{(k)}$. 
+        With the theorem of PDF of order statistic, we then get that the joint PDF is 
+        $$\begin{aligned}f_{U_{(j)}, U_{(k)}} 
+            &= \dfrac{n!}{(j - 1)!(k - j - 1)!(n - k)!}f(u_{(j)})(u_{(j)})^{j - 1}(u_{(k)} - u_{(j)})^{k - j - 1}f(u_{(k)})(1 - u_{(k)})^{n - k}\\
+            &= \dfrac{n!}{(j - 1)!(k - j - 1)!(n - k)!}(u_{(j)})^{j - 1}(u_{(k)} - u_{(j)})^{k - j - 1}(1 - u_{(k)})^{n - k}\end{aligned}$$
+    \item As we have that $X \sim Bin(n, p)$ and that $B \sim Beta(j, n - j + 1)$, we then denote that $$U_1, U_2, ..., U_n i.i.d. Unif(0, 1), $$
+        which is a sequence of trails, we then denote that $X$ is the number of success, 
+        where $X \sim Bin(n, p)$. We then get that $X \geq j$, is the same as the event that $U_{(j)} \leq p$, which is that the j th one in order is at the left of p.
+        Then with the theorem of order statistic, we get that
+        $$f_{U_{(j)}}(x) = n\begin{pmatrix}
+            n - 1 \\ j - 1
+        \end{pmatrix}x^{j - 1}(1 - x)^{n - j}$$
+        Then we get that the PDF of Beta(j, n - j + 1) distribution is $$f(x) = n\begin{pmatrix}
+            n - 1 \\ j - 1
+        \end{pmatrix}x^{j - 1}(1 - x)^{n - j}$$which is the same. So we get that $U_{(j)}$ is the same as 
+        Beta(j, n - j + 1). So we get that $P(X \geq j) = P(B \leq p)$
+    \item As no calculus is allowed, we then have that as 
+        for $X \sim Bin(n, p)$ and $B \sim Beta(j, n - j + 1)$, we get that $P(X \geq j) = P(B \leq p)$
+        So we get as for the equation, we have that $P(U_{(j)} \leq x)$ is that $$\int_{0}^{x}\dfrac{n!}{(j - 1)!(n - j)!}t_{j - 1}(1 - t)^{n - j}dt$$
+        As for the $Bin(n, p)$, the probability of $P(X \geq j)$ is $$P(X \geq j) = \sum_{k = j}^{n}\begin{pmatrix}
+            n \\ k
+        \end{pmatrix}x^k(1 - x)^{n - k}$$
+        As we get in (c), we get that $P(X \geq j) = P(U_{(j)} \leq p)$, so we get that
+        $$\int_{0}^{x}\dfrac{n!}{(j - 1)!(n - j)!}t_{j - 1}(1 - t)^{n - j}dt = \sum_{k = j}^{n}\begin{pmatrix}
+            n \\ k
+        \end{pmatrix}x^k(1 - x)^{n - k}$$
+\end{enumerate}
 
 \end{homeworkProblem}
 
@@ -230,14 +286,13 @@
 
 \begin{homeworkProblem}[4]
     
-
-
-\end{homeworkProblem}
-
-\newpage
-
-\begin{homeworkProblem}[5]
-    
+As for the Poisson-Gamma Duality, we prove it based on the model of Poisson process. \\
+Denote that $X_1, X_2, ..., X_{k + 1}$ i.i.d. Expo(1), then we have that with the property, we get that
+$$Z = X_1 + X_2 + ... + X_{k + 1} \sim Gamma(k + 1, 1)$$
+Then, we based on the Poisson process model, denote that $N_t$ is the number of arrivals within time t, then we have that $$N_t \sim Pois(\lambda t)$$
+which is $$P(N_t = n) = \dfrac{e^{-\lambda t}(\lambda t)^n}{n!}, n \geq 0$$
+So we get that $$P(Z > \lambda) = P(N_t \leq k) = \sum_{n = 0}^{k}P(N_\lambda = n) = P(X \leq k)$$
+So we based on the Poisson process get that Poisson-Gamma Duality $$P(X \leq k) = P(Z > \lambda)$$
 
 
 \end{homeworkProblem}
