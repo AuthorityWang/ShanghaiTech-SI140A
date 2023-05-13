@@ -144,71 +144,68 @@
 
 \begin{homeworkProblem}[1]
 
-\begin{enumerate}
-    % inline
-    \item 
-    \( f(n) \)
-    
-    \item
-    $ f(n) $
-    
-    \item
-   	\begin{math}
-   		f(n)
-    \end{math}
-    
-    % Display mode
-    \item
-    \[
-    	f(n)
-    \]
-    
-    \item 
-    $$ 
-    	f(n)
-    $$
-    
-    \item
-    \begin{equation}
-        	f(n)
-    \end{equation}
+\begin{enumerate}[(a)]
+    \item As for the distribution of $N$ - 1, as $X_1, X_2, ... $ i.i.d. Expo(1),
+        we have that $X_1, X_2, ...$ are independent, and each $X$ has probability of 
+        $\dfrac{1}{e}$ to exceed 1. As to the definition of Geometric distribution,
+        which is the number of trails to get the first success, we have that
+        $N$ - 1 follows Geometric distribution with parameter $\dfrac{1}{e}$.
+        So we get that $$N - 1 \sim Geom(\dfrac{1}{e}), $$ then with the property of Geometric distribution,
+        we have that $$E(N) = E(N - 1) + 1 = \dfrac{1 - 1 / e}{1 / e} + 1 = e - 1 + 1 = e.$$
+        So in conclusion, we have that the distribution is $$N - 1 \sim Geom(\dfrac{1}{e})$$ and the expectation is $$E(N) = e.$$
+    \item As for the $$min\{n: X_1 + X_2 + ... + X_n \geq 10\}, $$ it is obvious that
+        this can be considered as Poisson process as we calculate the sum of $X_i$ and observe them until sum exceeds 10, 
+        which is the same as Poisson process is the number of arrivals until the time exceeds 10, where the arrival interval
+        follows Expo(1). So we can consider $X_1, X_2, ..., X_n$ as the interarrival times in a Poisson process with rate 1. 
+        where the range of the time is $[0, 10)$\\
+        Then we have that $$M - 1 \sim Pois(10)$$ and we have that with the property of Poisson distribution, the 
+        $E(M)$ is $$E(M) = E(M - 1 + 1) = E(M - 1) + 1 = 10 + 1 = 11$$
+        So we have that the distribution is $$M - 1 \sim Pois(10)$$ and the expectation is $$E(M) = 11. $$
+    \item As for the $\overline{X}_n$, we have that $$\overline{X}_n = \dfrac{(X_1 + X_2 + ... + X_n)}{n} = \dfrac{X_1}{n} + \dfrac{X_2}{n} + ...  + \dfrac{X_n}{n}$$, 
+        As we have that $$X_1, X_2, ... i.i.d. Expo(1),$$ we then have that $$\dfrac{X_1}{n}, \dfrac{X_2}{n}, ... \sim Expo(n)$$
+        Then we have that $$\overline{X}_n \sim Gamma(n, n)$$
+        As for the approximate distribution of $\overline{X}_n$ for n large, 
+        with the center limit theorem, we have that when n is large, the distribution will
+        be approximately normal distribution with the same mean and variance as the origin distribution.
+        As we have that the origin distribution has mean of 1 and variance of 1, we have that the approximate distribution
+        is normal distribution $$\overline{X}_n \sim N(1, \dfrac{1}{n}). $$
+        So we have the exact distribution is Gamma distribution $$\overline{X}_n \sim Gamma(n, n)$$ 
+        and the approximate distribution is normal distribution $$\overline{X}_n \sim N(1, \dfrac{1}{n}). $$
 \end{enumerate}
 
 \end{homeworkProblem}
 
+\newpage
+
 \begin{homeworkProblem}[2]
 
-\begin{enumerate}
-	% alignment
-	\item
-    \[
-    	\begin{split}
-	    		n^{2} + n + 1 
-	    		\le ~& n^{2} + n^{2} + n^{2} \\
-	    		= ~& 3 n^{2} \\
-	    		\le ~& c \cdot 2 n^{3}
-	    	\end{split}
-    \]
-    
-    \item
-    \begin{equation}
-    	\begin{aligned}
-	    		n^{2} + n + 1 
-	    		\le ~& n^{2} + n^{2} + n^{2} \\
-	    		= ~& 3 n^{2} \\
-	    		\le ~& c \cdot 2 n^{3}
-		\end{aligned}
-	\end{equation}
-	
-	\item
-	\begin{align}
-	    	n^{2} + n + 1 
-	    	\le ~& n^{2} + n^{2} + n^{2} \\
-	    	= ~& 3 n^{2} \\
-	    	\le ~& c \cdot 2 n^{3}
-	\end{align}
-\end{enumerate}
+To show that the inequality 
+$$P(|\dfrac{1}{n}\sum_{i = 1}^{n}X_i - \mu| \geq \varepsilon) \leq 2exp(-\dfrac{2n\varepsilon^2}{(b - a)^2}). $$
+holds, we use the Hoeffding Lemma + Chernoff Inequality, the Hoeffding Lemma inequality is 
+$$E (e^{\lambda x}) \leq e^{\dfrac{1}{8}\lambda ^2(b - a)^2}, $$
+the Chernoff Inequality is 
+$$P(X \geq a) \leq \dfrac{E(e^{tX})}{e^{ta}}. $$
+Proof are as follows:\\
 
+
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[3]
+    
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[4]
+    
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}[5]
+    
 \end{homeworkProblem}
 
 \end{document}
