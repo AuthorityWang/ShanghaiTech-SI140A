@@ -161,16 +161,16 @@
         Then we have that $$M - 1 \sim Pois(10)$$ and we have that with the property of Poisson distribution, the 
         $E(M)$ is $$E(M) = E(M - 1 + 1) = E(M - 1) + 1 = 10 + 1 = 11$$
         So we have that the distribution is $$M - 1 \sim Pois(10)$$ and the expectation is $$E(M) = 11. $$
-    \item As for the $\overline{X}_n$, we have that $$\overline{X}_n = \dfrac{(X_1 + X_2 + ... + X_n)}{n} = \dfrac{X_1}{n} + \dfrac{X_2}{n} + ...  + \dfrac{X_n}{n}$$, 
+    \item As for the $\bar{X}_n$, we have that $$\bar{X}_n = \dfrac{(X_1 + X_2 + ... + X_n)}{n} = \dfrac{X_1}{n} + \dfrac{X_2}{n} + ...  + \dfrac{X_n}{n}$$, 
         As we have that $$X_1, X_2, ... i.i.d. Expo(1),$$ we then have that $$\dfrac{X_1}{n}, \dfrac{X_2}{n}, ... \sim Expo(n)$$
-        Then we have that $$\overline{X}_n \sim Gamma(n, n)$$
-        As for the approximate distribution of $\overline{X}_n$ for n large, 
+        Then we have that $$\bar{X}_n \sim Gamma(n, n)$$
+        As for the approximate distribution of $\bar{X}_n$ for n large, 
         with the center limit theorem, we have that when n is large, the distribution will
         be approximately normal distribution with the same mean and variance as the origin distribution.
         As we have that the origin distribution has mean of 1 and variance of 1, we have that the approximate distribution
-        is normal distribution $$\overline{X}_n \sim N(1, \dfrac{1}{n}). $$
-        So we have the exact distribution is Gamma distribution $$\overline{X}_n \sim Gamma(n, n)$$ 
-        and the approximate distribution is normal distribution $$\overline{X}_n \sim N(1, \dfrac{1}{n}). $$
+        is normal distribution $$\bar{X}_n \sim N(1, \dfrac{1}{n}). $$
+        So we have the exact distribution is Gamma distribution $$\bar{X}_n \sim Gamma(n, n)$$ 
+        and the approximate distribution is normal distribution $$\bar{X}_n \sim N(1, \dfrac{1}{n}). $$
 \end{enumerate}
 
 \end{homeworkProblem}
@@ -186,7 +186,32 @@ $$E (e^{\lambda x}) \leq e^{\dfrac{1}{8}\lambda ^2(b - a)^2}, $$
 the Chernoff Inequality is 
 $$P(X \geq a) \leq \dfrac{E(e^{tX})}{e^{ta}}. $$
 Proof are as follows:\\
-
+As $E(X_i) = \mu$, and that $a \leq X_i \leq b$, we then have that 
+$$X_i - \mu \leq b - \mu$$
+$$\mu - X_i \leq \mu - a. $$
+Then as for $s > 0$, we have that
+$$\begin{aligned}P(\dfrac{1}{n}\sum_{i = 1}^{n}X_i - \mu \geq \varepsilon)
+    &= P(s(\dfrac{1}{n}\sum_{i = 1}^{n}X_i - \mu) \geq \varepsilon s) \\
+    &= P(e^{s(\frac{1}{n}\sum_{i = 1}^{n}X_i - \mu)} \geq e^{\varepsilon s}) \\
+    \text{with Chernoff Inequality, we have that} \\
+    & \leq e^{-s\varepsilon}E(e^{s(\frac{1}{n}\sum_{i = 1}^{n}X_i - \mu)}) \\
+    &= e^{-s\varepsilon}\prod_{i = 1}^{n} E(e^{\frac{s}{n}(X_i - \mu)}) \\
+    \text{with Hoeffding Lemma, we have that} \\
+    &\leq e^{-s\varepsilon}\prod_{i = 1}^{n} e^{\frac{1}{8}(\frac{s}{n})^2(b - a)^2} \\
+    &= e^{-s\varepsilon + \frac{1}{8}(\frac{s}{n})^2(b - a)^2n} \\
+    &= e^{-s\varepsilon + \frac{s^2}{8n}(b - a)^2} \\
+\end{aligned}$$
+Then we try to find the minimum of $-s\varepsilon + \frac{s^2}{8n}(b - a)^2$ the to verify if the inequality satisfy. 
+We have the derivative is $$\dfrac{\partial \dfrac{s^2(b - a)^2}{8n} - s\varepsilon}{\partial s} = \dfrac{s(b - a)^2}{4n} - \varepsilon$$
+Then as we have that $$s = \dfrac{4n\varepsilon}{(b - a)^2} \quad \text{that we will get the minimum}$$
+we get that $$e^{-s\varepsilon + \frac{s^2}{8n}(b - a)^2} = e^{-\frac{2n\varepsilon^2}{(b - a)^2}}$$
+So we get that $$P(\dfrac{1}{n}\sum_{i = 1}^{n}X_i - \mu \geq \varepsilon) \leq e^{-\dfrac{2n\varepsilon^2}{(b - a)^2}}, $$
+then the same, we will get that 
+$$P(\mu - \dfrac{1}{n}\sum_{i = 1}^{n}X_i \leq -\varepsilon) \leq e^{-\dfrac{2n\varepsilon^2}{(b - a)^2}}, $$
+So we will get that
+$$P(| \dfrac{1}{n}\sum_{i = 1}^{n}X_i - \mu | \geq \varepsilon) = P(\mu - \dfrac{1}{n}\sum_{i = 1}^{n}X_i \leq -\varepsilon) + P(\dfrac{1}{n}\sum_{i = 1}^{n}X_i - \mu \geq \varepsilon) \leq 2e^{-\dfrac{2n\varepsilon^2}{(b - a)^2}}$$
+So we proved
+$$P(| \dfrac{1}{n}\sum_{i = 1}^{n}X_i - \mu | \geq \varepsilon) \leq 2e^{-\dfrac{2n\varepsilon^2}{(b - a)^2}}. $$
 
 \end{homeworkProblem}
 
@@ -194,18 +219,114 @@ Proof are as follows:\\
 
 \begin{homeworkProblem}[3]
     
+From the problem, we first get that the r.v. X has expectation $\mu$ and that variance $\sigma^2$, 
+we denote that $t$ is a variable that satisfy $t > 0$, 
+we then have that 
+$$\begin{aligned}
+    P(X - \mu \geq a) &= P(X - \mu + t \geq a + t) \\
+    &= P((X - \mu + t)^2 \geq (a + t)^2) \\
+\end{aligned}$$
+Then we use the markov inequality, we have that as $(a + t)^2 > 0$
+we get that
+$$\begin{aligned}
+    P((X - \mu + t)^2 \geq (a + t)^2) 
+        &\leq \dfrac{E((X - \mu + t)^2)}{(a + t)^2} \quad \text{With Markov inequality}\\
+        &= \dfrac{E(X^2 + t^2 + \mu^2 - 2\mu X + 2tX - 2\mu t)}{(a + t)^2} \\
+        &= \dfrac{E(X^2) + t^2 + \mu^2 - 2\mu E(X) + 2tE(X) - 2\mu t}{(a + t)^2} \\
+\end{aligned}$$
+As we have that $$Var(X) = E(X^2) - E(X)^2 = \sigma^2$$
+Then the $E(X^2) = \sigma^2 + \mu^2$
+So we get that
+$$\begin{aligned}
+    P((X - \mu + t)^2 \geq (a + t)^2)
+        &\leq \dfrac{\sigma^2 + \mu^2 + t^2 + \mu^2 - 2\mu^2 + 2t\mu - 2\mu t}{(a + t)^2} \\
+        &= \dfrac{\sigma^2 + t^2}{(a + t)^2}
+\end{aligned}$$
+Then as for the $t$ in $\dfrac{\sigma^2 + t^2}{(a + t)^2}$, it is a variable, then we can find the minimum of the 
+$\dfrac{\sigma^2 + t^2}{(a + t)^2}$, can verify if it satisfy the equality
+we have $$\dfrac{\partial \frac{\sigma^2 + t^2}{(a + t)^2}}{\partial t} = \dfrac{2at - 2\sigma^2}{(a + t)^3}$$
+where the $t = \dfrac{\sigma^2}{a}$, when we get minimum
+and the minimum is that $$\dfrac{2at - 2\sigma^2}{(a + t)^3} = \dfrac{\sigma^2}{a^2 + \sigma^2}$$
+which is exactly the bound. \\
+So we get that $$P((X - \mu + t)^2 \geq (a + t)^2) \leq \dfrac{\sigma^2}{a^2 + \sigma^2}. $$
+As $P((X - \mu - t)^2 \geq (a - t)^2)$ is the same with that $P(X - \mu \geq a)$, we get that
+$$P(X - \mu \geq a) \leq \dfrac{\sigma^2}{a^2 + \sigma^2}. $$
 \end{homeworkProblem}
 
 \newpage
 
 \begin{homeworkProblem}[4]
     
+From the problem, we know that the r.v. $X_i$ is that given the value of common mean,
+the $X_i$ are normal and independent, with known variances $\sigma^2_1$, ..., $\sigma^2_n. $
+then as we have that a normal prior  $\Theta$ of mean $x_0$ and variance $\sigma^2_0$, we have that the 
+porior satisfy that $$\Theta \sim N(x_0, \sigma^2_0). $$
+And the $X_i | \Theta$ satisfy that $$f_{X_i | \Theta}(x_i | \theta) = \dfrac{1}{\sqrt{2\pi\sigma^2_i}}e^{-\frac{(x_i - \theta)^2}{2\sigma^2_i}}. $$
+Then we need to find the posterior PDF of $\Theta$. 
+We have that with the Bayes' theorem, we get that as $X$ is a collection of $X_1, ..., X_n$, we have that
+$$\begin{aligned}f_{\Theta | X}(\theta | x) 
+    &= \dfrac{f_{X|\Theta}(x | \theta)f_{\Theta}(\theta)}{f_X(x)} \\
+    &= \dfrac{f_{(X_1, ..., X_n)|\Theta}((x_1, ..., x_n) | \theta)f_{\Theta}(\theta)}{f_{(X_1, ..., X_n)}((x_1, ..., x_n))} \\
+    \text{As the $X_i$ are independent, we get that} \\
+    &= \dfrac{f_{(X_1, ..., X_n)|\Theta}((x_1, ..., x_n) | \theta)f_{\Theta}(\theta)}{f_{(X_1, ..., X_n)}((x_1, ..., x_n))} \\
+\end{aligned}$$
+As the Denominator is a Integral which is a constant, we turn to use the fraction form as the left side is a valid PDF, we get that
+$$f_{\Theta | X}(\theta | x) \propto f_{X|\Theta}(x|\theta) f_{\Theta}(\theta)$$
+The right side can be write as $$\dfrac{1}{\sqrt{2\pi\sigma^2_0}}e^{-\dfrac{(\theta - x_0)^2}{2\sigma^2_0}}\prod_{i = 1}^{n}\dfrac{1}{\sqrt{2\pi \sigma^2_i}}e^{-\dfrac{(x_i - \theta)^2}{2\sigma^2_i}}
+\propto e^{-\dfrac{(\theta - x_0)^2}{2\sigma^2_0}}e^{-\sum_{i = 1}^{n}\dfrac{(x_i - \theta)^2}{2\sigma^2_i}}$$
+which equals $$e^{-\sum_{i = 0}^{n}\dfrac{(x_i - \theta)^2}{2\sigma^2_i}} \propto e^{-\sum_{i = 0}^{n}\dfrac{\theta^2}{2\sigma^2_i} + 2\sum_{i = 0}^{n}\dfrac{\theta x_i}{2\sigma^2_i}}. $$
+Then we try to simplify it to the form of Normal distribution, we have that
+$$\begin{aligned} f_{\Theta|X}(\theta | x)
+    & \propto e^{-\sum_{i = 0}^{n}\dfrac{\theta^2}{2\sigma^2_i} + 2\sum_{i = 0}^{n}\dfrac{\theta x_i}{2\sigma^2_i}} \\
+    & \propto e^{-\sum_{i = 0}^{n}\frac{1}{2\sigma^2_i}(\theta - \frac{\sum_{i = 0}^{n}\frac{x_i}{\sigma^2_i}}{2\sum_{i = 0}^{n}\frac{1}{2\sigma^2_i}})^2} \text{(Constant are abandon. )}\\
+    & = e^{-(\theta - \frac{\sum_{i = 0}^{n}\frac{x_i}{\sigma^2_i}}{2\sum_{i = 0}^{n}\frac{1}{2\sigma^2_i}})^2 / \frac{1}{\sum_{i = 0}^{n}\frac{1}{2\sigma^2_i}}}
+\end{aligned}$$
+Which is in the form of Normal distribution. 
+So we get that $$\Theta | X \sim N(\dfrac{\sum_{i = 0}^{n}\dfrac{x_i}{\sigma^2_i}}{\sum_{i = 0}^{n}\dfrac{1}{\sigma^2_i}}, \dfrac{1}{\sum_{i = 0}^{n}\dfrac{1}{\sigma^2_i}}). $$
+Then as for the PDF, we have that 
+$$f_{\Theta | X}(\theta | x) = \frac{1}{\sqrt{2\pi\frac{1}{{\sum_{i = 0}^{n}\frac{1}{\sigma^2_i}}}}}e^{-(\theta - \frac{\sum_{i = 0}^{n}\frac{x_i}{\sigma^2_i}}{2\sum_{i = 0}^{n}\frac{1}{2\sigma^2_i}})^2 / \frac{1}{\sum_{i = 0}^{n}\frac{1}{2\sigma^2_i}}}
+ = \frac{1}{\sqrt{2\pi\frac{1}{{\sum_{i = 0}^{n}\frac{1}{\sigma^2_i}}}}}e^{-(\theta - \frac{\sum_{i = 0}^{n}\frac{x_i}{\sigma^2_i}}{\sum_{i = 0}^{n}\frac{1}{\sigma^2_i}})^2 / \frac{2}{\sum_{i = 0}^{n}\frac{1}{\sigma^2_i}}}. $$
 \end{homeworkProblem}
 
 \newpage
 
 \begin{homeworkProblem}[5]
     
+\begin{enumerate}[(a)]
+    \item As for the n independent random variables $X_1, X_2, ..., X_n$, we have that
+        $$X_i \sim Expo(\theta). $$
+        Then with the definition of Maximum Likelihood Estimation, 
+        we get that the likelihood function is that
+        $$log[f_X(X_1, ..., X_n; \theta)] = log\prod_{i = 1}^{n}f_{X_i}(X_i; \theta) = \sum_{i = 1}^{n}log[f_{X_i}(X_i; \theta)]. $$
+        As we have $X_i \sim Expo(\theta)$, we get that 
+        $$f_{X_i}(X_i, \theta) = \theta e^{-\theta x_i}. $$
+        So the likelihood function is that
+        $$\sum_{i = 1}^{n}log[\theta e^{-\theta x_i}] = nlog\theta - \theta\sum_{i = 1}^{n}x_i. $$
+        Then we calculate the derivative of the likelihood function with respect to $\theta$, we get that
+        $$\dfrac{\partial log[f_X(X_1, ..., X_n; \theta)]}{\partial \theta} = \dfrac{n}{\theta} - \sum_{i = 1}^{n}x_i. $$
+        Then we get that the maximum likelihood estimation of $\theta$ is that
+        $$\hat{\theta} = \dfrac{n}{\sum_{i = 1}^{n}x_i}. $$
+    \item As for the n independent random variables $X_1, X_2, ..., X_n$, we have that
+        $$X_i \sim N(\mu, \nu). $$
+        Then with parameter vector $\theta = (\mu, \nu)$, with the definition
+        of Maximum Likelihood Estimation, we get that the likelihood function is that
+        $$log[f_X(X_1, ..., X_n; \mu, \nu)] = log\prod_{i = 1}^{n}f_{X_i}(X_i; \mu, \nu) = \sum_{i = 1}^{n}log[f_{X_i}(X_i; \mu, \nu)]. $$
+        As we have $X_i \sim N(\mu, \nu)$, we get that 
+        $$f_{X_i}(X_i, \mu, \nu) = \dfrac{1}{\sqrt{2\pi \nu}}e^{-\frac{(x_i - \mu)^2}{2\nu}}. $$
+        So the likelihood function is that
+        $$\sum_{i = 1}^{n}log[\dfrac{1}{\sqrt{2\pi \nu}}e^{-\frac{(x_i - \mu)^2}{2\nu}}] = nlog\dfrac{1}{\sqrt{2\pi \nu}} - \dfrac{1}{2\nu}\sum_{i = 1}^{n}(x_i - \mu)^2. $$
+        Then we calculate the derivative of the likelihood function with respect to $\mu$, we get that
+        $$\dfrac{\partial log[f_X(X_1, ..., X_n; \mu, \nu)]}{\partial \mu} = \dfrac{1}{\nu}\sum_{i = 1}^{n}(x_i - \mu). $$
+        Then we get that the maximum likelihood estimation of $\mu$ is that
+        $$\hat{\mu} = \dfrac{1}{n}\sum_{i = 1}^{n}x_i. $$
+        Then we calculate the derivative of the likelihood function with respect to $\nu$, we get that
+        $$\dfrac{\partial log[f_X(X_1, ..., X_n; \mu, \nu)]}{\partial \nu} = -\dfrac{n}{2\nu} + \dfrac{1}{2\nu^2}\sum_{i = 1}^{n}(x_i - \mu)^2. $$
+        Then we get that the maximum likelihood estimation of $\nu$ is that
+        $$\hat{\nu} = \dfrac{1}{n}\sum_{i = 1}^{n}(x_i - \mu)^2 = \dfrac{1}{n}\sum_{i = 1}^{n}(x_i - \dfrac{1}{n}\sum_{j = 1}^{n}x_j)^2. $$
+        So in conclusion we get that the maximum likelihood estimation of $\theta = (\mu, \nu)$ is that
+        $$\hat{\theta} = (\hat{\mu}, \hat{\nu}) = (\dfrac{1}{n}\sum_{i = 1}^{n}x_i, \dfrac{1}{n}\sum_{i = 1}^{n}(x_i - \dfrac{1}{n}\sum_{j = 1}^{n}x_j)^2). $$
+\end{enumerate}
+
 \end{homeworkProblem}
 
 \end{document}
