@@ -1,3 +1,4 @@
-# SI140A-HW
+# ShanghaiTech-SI140A
 
-The hw of SI140A
+ShanghaiTech SI140A Probability & Statistics for EECS, Spring 2023.  
+Note that the answer may be incorrect :-)
